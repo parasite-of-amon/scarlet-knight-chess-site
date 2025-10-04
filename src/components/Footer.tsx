@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#3E2723] text-amber-50">
+    <footer className="bg-black text-white">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="text-primary text-3xl">♞</div>
               <span className="font-serif text-xl font-bold">RUTGERS CHESS</span>
             </div>
-            <p className="text-sm text-amber-200/80 mb-4">
+            <p className="text-sm text-gray-400 mb-4">
               Building chess excellence at Rutgers University for over a century.
             </p>
             <div className="flex items-center space-x-2 mb-2">
@@ -86,7 +86,7 @@ const Footer = () => {
               <Input
                 type="email"
                 placeholder="Your Email Address"
-                className="bg-[#5D4037] border-amber-900/30 text-amber-50 placeholder:text-amber-200/50"
+                className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500"
               />
               <Button className="bg-primary text-dark-bg hover:bg-primary/90 px-3">
                 <ArrowRight size={20} />
@@ -96,8 +96,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-amber-900/30 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-amber-200/70 mb-4 md:mb-0">
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-400 mb-4 md:mb-0">
             Copyright © 2024. All rights reserved.
           </p>
           <div className="flex space-x-4">
