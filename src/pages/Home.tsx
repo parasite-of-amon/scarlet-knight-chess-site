@@ -34,7 +34,7 @@ const Home = () => {
               We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             </p>
             <div className="flex gap-4">
-              <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6">
+              <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6 text-center">
                 Get Started
               </Button>
               <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6 text-center">
