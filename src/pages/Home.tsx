@@ -6,19 +6,14 @@ import heroImage from "@/assets/hero-bg.jpg";
 import trophyImage from "@/assets/trophy.jpg";
 import about1Image from "@/assets/about-1.jpg";
 import about2Image from "@/assets/about-2.jpg";
-
 const Home = () => {
-  return (
-    <div>
+  return <div>
       {/* Hero Section */}
       <section className="relative bg-dark-bg text-dark-foreground py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/95 to-dark-bg/70 z-10" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-          }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{
+        backgroundImage: `url(${heroImage})`
+      }} />
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -42,7 +37,7 @@ const Home = () => {
               <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6">
                 Get Started
               </Button>
-              <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6">
+              <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6 text-center">
                 Our Events
               </Button>
             </div>
@@ -101,16 +96,8 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="grid grid-cols-2 gap-4">
-              <img
-                src={about1Image}
-                alt="Chess players of different ages playing together"
-                className="rounded-lg shadow-2xl"
-              />
-              <img
-                src={about2Image}
-                alt="Strategic chess gameplay"
-                className="rounded-lg shadow-2xl"
-              />
+              <img src={about1Image} alt="Chess players of different ages playing together" className="rounded-lg shadow-2xl" />
+              <img src={about2Image} alt="Strategic chess gameplay" className="rounded-lg shadow-2xl" />
             </div>
             <div>
               <div className="inline-block mb-4">
@@ -185,12 +172,9 @@ const Home = () => {
       {/* CTA Section */}
       <section className="relative py-32 bg-dark-bg text-dark-foreground overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/95 to-dark-bg/70 z-10" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: `url(${trophyImage})`,
-          }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{
+        backgroundImage: `url(${trophyImage})`
+      }} />
         <div className="container mx-auto px-4 text-center relative z-20">
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
             Join Our Club This Year
@@ -204,8 +188,6 @@ const Home = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
