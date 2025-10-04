@@ -185,26 +185,57 @@ const Events = () => {
             {/* Calendar */}
             <TabsContent value="calendar">
               <div className="text-center mb-12">
-                <h2 className="font-serif text-4xl font-bold mb-4">Event Calendar</h2>
-                <p className="text-muted-foreground">View all upcoming events and meetings</p>
+                <h2 className="font-serif text-4xl font-bold mb-4">📅 Event Calendar</h2>
+                <p className="text-muted-foreground">Color-coded events: 🟩 Meetings • 🟦 Tournaments • 🟨 Social Nights • 🟥 Deadlines</p>
               </div>
 
               <Card className="max-w-4xl mx-auto">
                 <CardContent className="p-8">
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-primary/10 rounded-lg p-6">
-                        <h3 className="font-serif text-xl font-bold mb-3">Tuesday Meetings</h3>
+                      <div className="bg-green-500/10 border-2 border-green-500/20 rounded-lg p-6">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-2xl">🟩</span>
+                          <h3 className="font-serif text-xl font-bold">Tuesday Meetings</h3>
+                        </div>
                         <p className="text-muted-foreground mb-2">Every Tuesday</p>
                         <p className="font-medium">7:00 PM - 9:00 PM</p>
                         <p className="text-sm text-muted-foreground">Busch Student Center - Food Court</p>
+                        <p className="text-sm mt-3 text-muted-foreground">Casual games, practice, and chess discussion</p>
                       </div>
 
-                      <div className="bg-primary/10 rounded-lg p-6">
-                        <h3 className="font-serif text-xl font-bold mb-3">Friday Meetings</h3>
+                      <div className="bg-green-500/10 border-2 border-green-500/20 rounded-lg p-6">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-2xl">🟩</span>
+                          <h3 className="font-serif text-xl font-bold">Friday Meetings</h3>
+                        </div>
                         <p className="text-muted-foreground mb-2">Every Friday</p>
                         <p className="font-medium">7:00 PM - 9:00 PM</p>
                         <p className="text-sm text-muted-foreground">Busch Student Center - The Cove or Food Court</p>
+                        <p className="text-sm mt-3 text-muted-foreground">Training sessions with coordinator and casual play</p>
+                      </div>
+                    </div>
+
+                    <div className="border-t pt-6">
+                      <h4 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        Subscribe to Calendar
+                      </h4>
+                      <p className="text-muted-foreground mb-4">
+                        Stay updated with all club events by subscribing to our calendar. Sync with Google Calendar, Apple Calendar, or your phone.
+                      </p>
+                      <Button className="bg-primary text-dark-bg hover:bg-primary/90">
+                        Subscribe to Calendar
+                      </Button>
+                    </div>
+
+                    <div className="border-t pt-6">
+                      <h4 className="font-serif text-lg font-bold mb-4">Event Filters & Tags</h4>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="inline-block bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20 px-3 py-1 rounded-full text-sm">In-Person</span>
+                        <span className="inline-block bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full text-sm">Rated</span>
+                        <span className="inline-block bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border border-yellow-500/20 px-3 py-1 rounded-full text-sm">Beginner-Friendly</span>
+                        <span className="inline-block bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/20 px-3 py-1 rounded-full text-sm">Social Event</span>
                       </div>
                     </div>
 
@@ -226,6 +257,10 @@ const Events = () => {
                         <li className="flex items-start gap-2">
                           <span className="text-primary mt-1">•</span>
                           <span>Free for all Rutgers students and staff</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-primary mt-1">•</span>
+                          <span>Treat equipment and members with respect</span>
                         </li>
                       </ul>
                     </div>

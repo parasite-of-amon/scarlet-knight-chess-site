@@ -2,6 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Trophy, Users, Calendar, Award } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-bg.jpg";
+import trophyImage from "@/assets/trophy.jpg";
+import about1Image from "@/assets/about-1.jpg";
+import about2Image from "@/assets/about-2.jpg";
 
 const Home = () => {
   return (
@@ -12,23 +16,27 @@ const Home = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=1200')",
+            backgroundImage: `url(${heroImage})`,
           }}
         />
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl">
-            <p className="text-primary text-sm font-medium mb-4 uppercase tracking-wider">
-              Welcome to Rutgers University
-            </p>
             <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Make You Play Chess
+              Welcome to the
               <br />
-              <span className="text-primary">Like a Grandmaster</span>
+              <span className="text-primary">Rutgers University Chess Club!</span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
               Whether you are just a beginner or have a ton of experience in the game of chess,
               this club is the place for you. Stop by to play games with other Scarlet Knights
               and discuss chess-related current events.
+            </p>
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              We have in-person meetings and tournaments throughout the school year. You are 
+              welcome to bring your own boards, pieces, or clocks but supplies will be provided.
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed font-semibold">
+              We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             </p>
             <div className="flex gap-4">
               <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6">
@@ -92,10 +100,15 @@ const Home = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="grid grid-cols-2 gap-4">
               <img
-                src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800"
-                alt="Chess players"
+                src={about1Image}
+                alt="Chess players of different ages playing together"
+                className="rounded-lg shadow-2xl"
+              />
+              <img
+                src={about2Image}
+                alt="Strategic chess gameplay"
                 className="rounded-lg shadow-2xl"
               />
             </div>
@@ -175,7 +188,7 @@ const Home = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=1200')",
+            backgroundImage: `url(${trophyImage})`,
           }}
         />
         <div className="container mx-auto px-4 text-center relative z-20">
