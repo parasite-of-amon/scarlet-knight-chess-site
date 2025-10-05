@@ -21,12 +21,12 @@ const FAQ = () => {
       answer: "1) Control the center of the board, 2) Develop your pieces quickly and efficiently, 3) Protect your king through castling early in the game.",
     },
     {
-      question: "What is the standard of the course?",
-      answer: "Our club welcomes all skill levels, from complete beginners to experienced tournament players. We provide training sessions every Friday with our coordinator Max Humes, tailored to different skill levels.",
+      question: "What skill level do I need to join?",
+      answer: "Our club welcomes all skill levels, from complete beginners to experienced tournament players. We provide a supportive environment where members can play casual games, participate in tournaments, and learn from each other.",
     },
     {
-      question: "How long is the course duration?",
-      answer: "We meet twice weekly throughout the academic year - Tuesdays and Fridays from 7-9 PM. There's no fixed course duration; members can attend as frequently as they wish.",
+      question: "How often does the club meet?",
+      answer: "We meet twice weekly throughout the academic year - Tuesdays and Fridays from 7-9 PM at the Busch Student Center. There's no attendance requirement; members can attend as frequently as they wish.",
     },
     {
       question: "Can you win in chess without using clockwise?",
@@ -37,7 +37,7 @@ const FAQ = () => {
       answer: "Join our club officially via getINVOLVED, join our Discord, and join our Chess.com page. We'll announce all upcoming tournaments and competitions through these channels.",
     },
     {
-      question: "How much do I have to spend to take the class?",
+      question: "How much does it cost to join?",
       answer: "Membership is completely free! There are no fees to attend meetings or participate in most events. Equipment is provided, though you're welcome to bring your own.",
     },
   ];
@@ -126,7 +126,7 @@ const FAQ = () => {
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
           </p>
-          <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6">
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6">
             JOIN NOW
           </Button>
         </div>

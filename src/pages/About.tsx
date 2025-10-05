@@ -107,13 +107,13 @@ const About = () => {
                 Why Choose Us
               </p>
               <h2 className="font-serif text-4xl font-bold mb-6">
-                12 Years Of Experience in
+                Over 100 Years of
                 <br />
-                Chess Course
+                Chess Excellence
               </h2>
               <div className="space-y-4 mb-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">Best Chess Courses</span>
+                  <span className="text-foreground font-medium">Community Engagement</span>
                   <span className="text-primary font-bold">95%</span>
                 </div>
                 <div className="w-full bg-background rounded-full h-2">
@@ -121,7 +121,7 @@ const About = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">Expert Coach</span>
+                  <span className="text-foreground font-medium">Tournament Participation</span>
                   <span className="text-primary font-bold">93%</span>
                 </div>
                 <div className="w-full bg-background rounded-full h-2">
@@ -129,7 +129,7 @@ const About = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">Best Awards</span>
+                  <span className="text-foreground font-medium">Member Satisfaction</span>
                   <span className="text-primary font-bold">90%</span>
                 </div>
                 <div className="w-full bg-background rounded-full h-2">
@@ -140,7 +140,7 @@ const About = () => {
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=800"
-                alt="Chess course"
+                alt="Chess tournament"
                 className="rounded-lg shadow-2xl"
               />
             </div>

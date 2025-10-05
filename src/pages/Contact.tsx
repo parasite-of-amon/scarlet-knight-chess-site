@@ -42,7 +42,7 @@ const Contact = () => {
                 <p className="text-primary text-sm font-medium mb-4 uppercase tracking-wider">
                   Contact Us
                 </p>
-                <h2 className="font-serif text-3xl font-bold mb-6">Get a Quote</h2>
+                <h2 className="font-serif text-3xl font-bold mb-6">Get In Touch</h2>
                 <p className="text-muted-foreground mb-8">
                   Have questions or want to join? Get in touch with us and we'll respond as soon as possible.
                 </p>

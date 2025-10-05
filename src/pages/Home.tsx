@@ -52,9 +52,9 @@ const Home = () => {
             <Card className="bg-dark-bg text-dark-foreground border-border/10">
               <CardContent className="p-8 text-center">
                 <Calendar className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-serif text-xl font-semibold mb-2">New Courses</h3>
+                <h3 className="font-serif text-xl font-semibold mb-2">Weekly Meetings</h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  Weekly chess lessons every Friday with our training coordinator
+                  Join us every Tuesday and Friday for casual games and tournaments
                 </p>
                 <a href="#" className="text-primary text-sm font-medium hover:underline">
                   Learn More →
@@ -65,9 +65,9 @@ const Home = () => {
             <Card className="bg-primary text-primary-foreground border-primary">
               <CardContent className="p-8 text-center">
                 <Trophy className="w-12 h-12 text-primary-foreground mx-auto mb-4" />
-                <h3 className="font-serif text-xl font-semibold mb-2">Top Coach</h3>
+                <h3 className="font-serif text-xl font-semibold mb-2">Tournaments</h3>
                 <p className="text-primary-foreground/90 text-sm mb-4">
-                  Learn from experienced players and improve your game
+                  Compete in USCF-rated tournaments and improve your skills
                 </p>
                 <a href="#" className="text-primary-foreground text-sm font-medium hover:underline">
                   Learn More →
@@ -78,7 +78,7 @@ const Home = () => {
             <Card className="bg-dark-bg text-dark-foreground border-border/10">
               <CardContent className="p-8 text-center">
                 <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-serif text-xl font-semibold mb-2">Many Vacancies</h3>
+                <h3 className="font-serif text-xl font-semibold mb-2">All Welcome</h3>
                 <p className="text-muted-foreground text-sm mb-4">
                   Open to all Rutgers students and staff, no experience required
                 </p>
@@ -139,31 +139,31 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-8 h-8 text-primary" />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">667+</div>
-              <div className="text-sm text-muted-foreground">Best Award</div>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-primary" />
               </div>
-              <div className="text-4xl font-bold text-primary mb-2">129</div>
-              <div className="text-sm text-muted-foreground">Top Coach</div>
+              <div className="text-4xl font-bold text-primary mb-2">125+</div>
+              <div className="text-sm text-muted-foreground">Active Members</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Calendar className="w-8 h-8 text-primary" />
               </div>
-              <div className="text-4xl font-bold text-primary mb-2">606+</div>
-              <div className="text-sm text-muted-foreground">Best Course</div>
+              <div className="text-4xl font-bold text-primary mb-2">100+</div>
+              <div className="text-sm text-muted-foreground">Meetings Per Year</div>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="w-8 h-8 text-primary" />
+              </div>
+              <div className="text-4xl font-bold text-primary mb-2">15+</div>
+              <div className="text-sm text-muted-foreground">Tournaments</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-primary" />
               </div>
-              <div className="text-4xl font-bold text-primary mb-2">117+</div>
-              <div className="text-sm text-muted-foreground">Top Rating</div>
+              <div className="text-4xl font-bold text-primary mb-2">100+</div>
+              <div className="text-sm text-muted-foreground">Years of History</div>
             </div>
           </div>
         </div>

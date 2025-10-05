@@ -51,7 +51,7 @@ const Events = () => {
       date: "Every Friday",
       time: "7:00 PM - 9:00 PM",
       location: "Busch Student Center - The Cove or Food Court",
-      description: "Training sessions with Max Humes and casual play",
+      description: "Casual games, practice, and chess discussion",
     },
   ];
 
@@ -212,7 +212,7 @@ const Events = () => {
                         <p className="text-muted-foreground mb-2">Every Friday</p>
                         <p className="font-medium">7:00 PM - 9:00 PM</p>
                         <p className="text-sm text-muted-foreground">Busch Student Center - The Cove or Food Court</p>
-                        <p className="text-sm mt-3 text-muted-foreground">Training sessions with coordinator and casual play</p>
+                        <p className="text-sm mt-3 text-muted-foreground">Casual games, practice, and chess discussion</p>
                       </div>
                     </div>
 

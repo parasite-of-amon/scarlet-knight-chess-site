@@ -20,10 +20,10 @@ const Resources = () => {
     },
     {
       icon: BookOpen,
-      title: "Friday Training Sessions",
-      description: "Join our training coordinator Max Humes every Friday for structured lessons covering openings, tactics, endgames, and strategy.",
+      title: "Chess Strategy Resources",
+      description: "Access recommended books, articles, and online resources to study chess openings, tactics, and endgame techniques at your own pace.",
       link: "#",
-      linkText: "Learn More",
+      linkText: "View Resources",
     },
   ];
 
@@ -116,50 +116,6 @@ const Resources = () => {
             ))}
           </div>
 
-          {/* Training Coordinator Section */}
-          <Card className="mb-16 border-2 border-primary max-w-4xl mx-auto">
-            <CardContent className="p-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="font-serif text-3xl font-bold mb-4">Friday Lessons with Max Humes</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Our training coordinator Max Humes leads structured chess lessons every Friday.
-                    These sessions cover everything from opening principles to endgame techniques,
-                    tailored to accommodate players of all skill levels.
-                  </p>
-                  <div className="space-y-2 text-sm">
-                    <p className="font-medium">📅 Every Friday, 7:00 PM - 9:00 PM</p>
-                    <p className="font-medium">📍 Busch Student Center</p>
-                  </div>
-                </div>
-                <div className="bg-secondary rounded-lg p-8">
-                  <h4 className="font-serif text-xl font-bold mb-4">Topics Covered:</h4>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Opening theory and principles</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Tactical patterns and combinations</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Positional understanding</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Endgame techniques</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Game analysis and review</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
           {/* External Links */}
           <div className="mb-16">
