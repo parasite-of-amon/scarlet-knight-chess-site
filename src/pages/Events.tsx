@@ -109,7 +109,7 @@ const Events = () => {
                         </div>
                       </div>
                       <p className="text-muted-foreground mb-6">{event.description}</p>
-                      <Button className="bg-primary text-dark-bg hover:bg-primary/90 w-full">
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
                         Learn More
                       </Button>
                     </CardContent>
@@ -224,7 +224,7 @@ const Events = () => {
                       <p className="text-muted-foreground mb-4">
                         Stay updated with all club events by subscribing to our calendar. Sync with Google Calendar, Apple Calendar, or your phone.
                       </p>
-                      <Button className="bg-primary text-dark-bg hover:bg-primary/90">
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                         Subscribe to Calendar
                       </Button>
                     </div>

@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
@@ -17,24 +19,24 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 15%;
 
-    --primary: 43 74% 49%;
-    --primary-foreground: 0 0% 15%;
+    --primary: 343 100% 32%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 40 15% 95%;
+    --secondary: 343 15% 95%;
     --secondary-foreground: 0 0% 15%;
 
-    --muted: 40 15% 95%;
+    --muted: 343 15% 95%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 15%;
+    --accent: 343 100% 32%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 40 15% 90%;
-    --input: 40 15% 90%;
-    --ring: 43 74% 49%;
+    --border: 343 15% 90%;
+    --input: 343 15% 90%;
+    --ring: 343 100% 32%;
 
     --radius: 0.5rem;
 
@@ -52,8 +54,8 @@ All colors MUST be HSL.
     --popover: 0 0% 15%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 43 74% 49%;
-    --primary-foreground: 0 0% 15%;
+    --primary: 343 100% 32%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 20%;
     --secondary-foreground: 0 0% 95%;
@@ -61,15 +63,15 @@ All colors MUST be HSL.
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 15%;
+    --accent: 343 100% 32%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 43 74% 49%;
+    --ring: 343 100% 32%;
   }
 }
 
@@ -86,5 +88,3 @@ All colors MUST be HSL.
     @apply font-serif;
   }
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');

@@ -46,7 +46,7 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-primary text-dark-bg hover:bg-primary/90 font-medium">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
               Get Started
             </Button>
           </div>
@@ -77,7 +77,7 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="w-full bg-primary text-dark-bg hover:bg-primary/90 font-medium">
+            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
               Get Started
             </Button>
           </div>

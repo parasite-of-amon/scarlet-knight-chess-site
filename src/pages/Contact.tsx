@@ -67,16 +67,16 @@ const Contact = () => {
                 />
 
                 <div className="flex gap-3">
-                  <a href="#" className="w-10 h-10 bg-primary text-dark-bg flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
                     <Facebook size={18} />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-primary text-dark-bg flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
                     <Twitter size={18} />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-primary text-dark-bg flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
                     <Instagram size={18} />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-primary text-dark-bg flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center rounded hover:bg-primary/90 transition-colors">
                     <Youtube size={18} />
                   </a>
                 </div>
@@ -136,7 +136,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" className="bg-primary text-dark-bg hover:bg-primary/90 w-full md:w-auto px-8">
+                <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full md:w-auto px-8">
                   Send Message
                 </Button>
               </form>

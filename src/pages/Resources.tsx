@@ -108,7 +108,7 @@ const Resources = () => {
                   </div>
                   <h3 className="font-serif text-xl font-bold mb-4">{resource.title}</h3>
                   <p className="text-muted-foreground mb-6">{resource.description}</p>
-                  <Button className="w-full bg-primary text-dark-bg hover:bg-primary/90">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     {resource.linkText} <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </CardContent>

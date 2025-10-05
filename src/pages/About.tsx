@@ -59,7 +59,7 @@ const About = () => {
                   <div className="text-sm text-muted-foreground">Outstanding Members</div>
                 </div>
               </div>
-              <Button className="bg-primary text-dark-bg hover:bg-primary/90">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 About Us
               </Button>
             </div>

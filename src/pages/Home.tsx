@@ -34,7 +34,7 @@ const Home = () => {
               We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             </p>
             <div className="flex gap-4">
-              <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6 text-center">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 text-center">
                 Get Started
               </Button>
               <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6 text-center">
@@ -62,14 +62,14 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-primary text-dark-bg border-primary">
+            <Card className="bg-primary text-primary-foreground border-primary">
               <CardContent className="p-8 text-center">
-                <Trophy className="w-12 h-12 text-dark-bg mx-auto mb-4" />
+                <Trophy className="w-12 h-12 text-primary-foreground mx-auto mb-4" />
                 <h3 className="font-serif text-xl font-semibold mb-2">Top Coach</h3>
-                <p className="text-dark-bg/80 text-sm mb-4">
+                <p className="text-primary-foreground/90 text-sm mb-4">
                   Learn from experienced players and improve your game
                 </p>
-                <a href="#" className="text-dark-bg text-sm font-medium hover:underline">
+                <a href="#" className="text-primary-foreground text-sm font-medium hover:underline">
                   Learn More →
                 </a>
               </CardContent>
@@ -125,7 +125,7 @@ const Home = () => {
                   <div className="text-sm text-muted-foreground">Outstanding Members</div>
                 </div>
               </div>
-              <Button className="bg-primary text-dark-bg hover:bg-primary/90">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 About Us
               </Button>
             </div>
@@ -183,7 +183,7 @@ const Home = () => {
             We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             No fees, no attendance obligation, equipment provided.
           </p>
-          <Button className="bg-primary text-dark-bg hover:bg-primary/90 text-lg px-8 py-6">
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6">
             JOIN NOW
           </Button>
         </div>
