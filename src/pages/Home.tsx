@@ -34,12 +34,16 @@ const Home = () => {
               We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             </p>
             <div className="flex gap-4">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 text-center">
-                Get Started
-              </Button>
-              <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6 text-center">
-                Our Events
-              </Button>
+              <Link to="/membership">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 text-center">
+                  Get Started
+                </Button>
+              </Link>
+              <Link to="/events">
+                <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6 text-center">
+                  Our Events
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -56,9 +60,9 @@ const Home = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   Join us every Tuesday and Friday for casual games and tournaments
                 </p>
-                <a href="#" className="text-primary text-sm font-medium hover:underline">
+                <Link to="/events" className="text-primary text-sm font-medium hover:underline">
                   Learn More →
-                </a>
+                </Link>
               </CardContent>
             </Card>
 
@@ -69,9 +73,9 @@ const Home = () => {
                 <p className="text-primary-foreground/90 text-sm mb-4">
                   Compete in USCF-rated tournaments and improve your skills
                 </p>
-                <a href="#" className="text-primary-foreground text-sm font-medium hover:underline">
+                <Link to="/events" className="text-primary-foreground text-sm font-medium hover:underline">
                   Learn More →
-                </a>
+                </Link>
               </CardContent>
             </Card>
 
@@ -82,9 +86,9 @@ const Home = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   Open to all Rutgers students and staff, no experience required
                 </p>
-                <a href="#" className="text-primary text-sm font-medium hover:underline">
+                <Link to="/membership" className="text-primary text-sm font-medium hover:underline">
                   Learn More →
-                </a>
+                </Link>
               </CardContent>
             </Card>
           </div>
@@ -125,9 +129,11 @@ const Home = () => {
                   <div className="text-sm text-muted-foreground">Outstanding Members</div>
                 </div>
               </div>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                About Us
-              </Button>
+              <Link to="/about">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  About Us
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -183,9 +189,11 @@ const Home = () => {
             We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             No fees, no attendance obligation, equipment provided.
           </p>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6">
-            JOIN NOW
-          </Button>
+          <Link to="/membership">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6">
+              JOIN NOW
+            </Button>
+          </Link>
         </div>
       </section>
     </div>;

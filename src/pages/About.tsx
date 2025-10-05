@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Target, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -17,7 +18,7 @@ const About = () => {
         <div className="container mx-auto px-4 text-center relative z-20">
           <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">About Us</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <a href="/" className="hover:text-primary">Home</a>
+            <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">About</span>
           </div>
@@ -59,9 +60,11 @@ const About = () => {
                   <div className="text-sm text-muted-foreground">Outstanding Members</div>
                 </div>
               </div>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                About Us
-              </Button>
+              <Link to="/membership">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  Join Now
+                </Button>
+              </Link>
             </div>
           </div>
 

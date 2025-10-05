@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, MapPin, Trophy, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Events = () => {
   const pastEvents = [
@@ -69,7 +70,7 @@ const Events = () => {
         <div className="container mx-auto px-4 text-center relative z-20">
           <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">Events</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <a href="/" className="hover:text-primary">Home</a>
+            <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">Events</span>
           </div>
@@ -109,9 +110,11 @@ const Events = () => {
                         </div>
                       </div>
                       <p className="text-muted-foreground mb-6">{event.description}</p>
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
-                        Learn More
-                      </Button>
+                      <Link to="/membership" className="block">
+                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
+                          Learn More
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 ))}
@@ -224,9 +227,11 @@ const Events = () => {
                       <p className="text-muted-foreground mb-4">
                         Stay updated with all club events by subscribing to our calendar. Sync with Google Calendar, Apple Calendar, or your phone.
                       </p>
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                        Subscribe to Calendar
-                      </Button>
+                      <Link to="/contact">
+                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                          Subscribe to Calendar
+                        </Button>
+                      </Link>
                     </div>
 
                     <div className="border-t pt-6">

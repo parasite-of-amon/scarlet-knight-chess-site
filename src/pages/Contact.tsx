@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,7 +26,7 @@ const Contact = () => {
         <div className="container mx-auto px-4 text-center relative z-20">
           <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">Contact Us</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <a href="/" className="hover:text-primary">Home</a>
+            <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">Contact Us</span>
           </div>

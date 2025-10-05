@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Video, Puzzle, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Resources = () => {
   const resources = [
@@ -10,6 +11,7 @@ const Resources = () => {
       description: "New to chess? Start here with a comprehensive video guide covering all the basic rules and piece movements.",
       link: "https://www.youtube.com/watch?v=OCSbzr-2isA",
       linkText: "Watch Tutorial",
+      external: true,
     },
     {
       icon: Puzzle,
@@ -17,13 +19,15 @@ const Resources = () => {
       description: "Sharpen your tactical skills with daily puzzles on Chess.com. Practice different positions and improve your pattern recognition.",
       link: "https://www.chess.com/puzzles",
       linkText: "Solve Puzzles",
+      external: true,
     },
     {
       icon: BookOpen,
       title: "Chess Strategy Resources",
       description: "Access recommended books, articles, and online resources to study chess openings, tactics, and endgame techniques at your own pace.",
-      link: "#",
+      link: "/membership",
       linkText: "View Resources",
+      external: false,
     },
   ];
 
@@ -82,7 +86,7 @@ const Resources = () => {
         <div className="container mx-auto px-4 text-center relative z-20">
           <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">Resources</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <a href="/" className="hover:text-primary">Home</a>
+            <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">Resources</span>
           </div>
@@ -108,9 +112,19 @@ const Resources = () => {
                   </div>
                   <h3 className="font-serif text-xl font-bold mb-4">{resource.title}</h3>
                   <p className="text-muted-foreground mb-6">{resource.description}</p>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                    {resource.linkText} <ExternalLink className="ml-2 w-4 h-4" />
-                  </Button>
+                  {resource.external ? (
+                    <a href={resource.link} target="_blank" rel="noopener noreferrer" className="block">
+                      <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                        {resource.linkText} <ExternalLink className="ml-2 w-4 h-4" />
+                      </Button>
+                    </a>
+                  ) : (
+                    <Link to={resource.link} className="block">
+                      <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                        {resource.linkText} <ExternalLink className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             ))}

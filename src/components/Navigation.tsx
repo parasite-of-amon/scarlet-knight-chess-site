@@ -13,7 +13,6 @@ const Navigation = () => {
     { name: "Events", path: "/events" },
     { name: "Membership", path: "/membership" },
     { name: "Resources", path: "/resources" },
-    { name: "FAQ", path: "/faq" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -46,9 +45,14 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
-              Get Started
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" className="border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark-bg font-medium">
+                Sign In
+              </Button>
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+                Sign Up
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -77,9 +81,14 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
-              Get Started
-            </Button>
+            <div className="space-y-2">
+              <Button variant="outline" className="w-full border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark-bg font-medium">
+                Sign In
+              </Button>
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+                Sign Up
+              </Button>
+            </div>
           </div>
         )}
       </div>

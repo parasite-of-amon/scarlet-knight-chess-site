@@ -1,6 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CircleCheck as CheckCircle2 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 
 const Membership = () => {
   const membershipSteps = [
@@ -49,7 +56,7 @@ const Membership = () => {
         <div className="container mx-auto px-4 text-center relative z-20">
           <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">Membership</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <a href="/" className="hover:text-primary">Home</a>
+            <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">Membership</span>
           </div>
@@ -174,6 +181,97 @@ const Membership = () => {
               </ul>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-secondary">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-primary text-sm font-medium mb-4 uppercase tracking-wider">
+              FAQs
+            </p>
+            <h2 className="font-serif text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Find answers to commonly asked questions about our chess club, meetings, and membership.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div>
+              <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem value="item-0" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    What is the most important rule in Chess?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    The most important rule is that the king must never be left in check. When your king is threatened, you must either move it to safety, block the attack, or capture the attacking piece.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-1" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    What are the six pieces in chess called?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    The six pieces are: King, Queen, Rook, Bishop, Knight, and Pawn. Each piece has unique movement patterns and strategic values in the game.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    What are the 3 golden rules of chess?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    1) Control the center of the board, 2) Develop your pieces quickly and efficiently, 3) Protect your king through castling early in the game.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    What skill level do I need to join?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Our club welcomes all skill levels, from complete beginners to experienced tournament players. We provide a supportive environment where members can play casual games, participate in tournaments, and learn from each other.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            <div>
+              <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem value="item-4" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    How often does the club meet?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    We meet twice weekly throughout the academic year - Tuesdays and Fridays from 7-9 PM at the Busch Student Center. There's no attendance requirement; members can attend as frequently as they wish.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-5" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    Can you win in chess without using clockwise?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Yes, you can win without a clock in casual games. However, in tournament play, chess clocks are standard to ensure fair time management for both players.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-6" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    How can I enter the competition?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Join our club officially via getINVOLVED, join our Discord, and join our Chess.com page. We'll announce all upcoming tournaments and competitions through these channels.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-7" className="bg-card border border-border rounded-lg px-6">
+                  <AccordionTrigger className="font-serif text-left hover:text-primary">
+                    How much does it cost to join?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Membership is completely free! There are no fees to attend meetings or participate in most events. Equipment is provided, though you're welcome to bring your own.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
         </div>
       </section>
     </div>
