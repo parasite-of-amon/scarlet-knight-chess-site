@@ -60,16 +60,16 @@ const Events = () => {
     <div>
       {/* Page Header */}
       <section className="relative py-32 bg-dark-bg text-dark-foreground overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/95 to-dark-bg/70 z-10" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/40 to-dark-bg/20 z-10" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=1200')",
           }}
         />
         <div className="container mx-auto px-4 text-center relative z-20">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">Events</h1>
-          <div className="flex items-center justify-center gap-2 text-sm">
+          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Events</h1>
+          <div className="flex items-center justify-center gap-2 text-sm text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">Events</span>

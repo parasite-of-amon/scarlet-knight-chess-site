@@ -8,16 +8,16 @@ const About = () => {
     <div>
       {/* Page Header */}
       <section className="relative py-32 bg-dark-bg text-dark-foreground overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/95 to-dark-bg/70 z-10" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/40 to-dark-bg/20 z-10" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=1200')",
           }}
         />
         <div className="container mx-auto px-4 text-center relative z-20">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">About Us</h1>
-          <div className="flex items-center justify-center gap-2 text-sm">
+          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">About Us</h1>
+          <div className="flex items-center justify-center gap-2 text-sm text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             <Link to="/" className="hover:text-primary">Home</Link>
             <span>/</span>
             <span className="text-primary">About</span>
@@ -101,55 +101,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-primary text-sm font-medium mb-4 uppercase tracking-wider">
-                Why Choose Us
-              </p>
-              <h2 className="font-serif text-4xl font-bold mb-6">
-                Over 100 Years of
-                <br />
-                Chess Excellence
-              </h2>
-              <div className="space-y-4 mb-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">Community Engagement</span>
-                  <span className="text-primary font-bold">95%</span>
-                </div>
-                <div className="w-full bg-background rounded-full h-2">
-                  <div className="bg-primary h-2 rounded-full" style={{ width: "95%" }} />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">Tournament Participation</span>
-                  <span className="text-primary font-bold">93%</span>
-                </div>
-                <div className="w-full bg-background rounded-full h-2">
-                  <div className="bg-primary h-2 rounded-full" style={{ width: "93%" }} />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">Member Satisfaction</span>
-                  <span className="text-primary font-bold">90%</span>
-                </div>
-                <div className="w-full bg-background rounded-full h-2">
-                  <div className="bg-primary h-2 rounded-full" style={{ width: "90%" }} />
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=800"
-                alt="Chess tournament"
-                className="rounded-lg shadow-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

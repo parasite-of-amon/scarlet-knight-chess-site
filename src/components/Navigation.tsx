@@ -19,7 +19,7 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-dark-bg border-b border-border/10 sticky top-0 z-50">
+    <nav className="bg-dark-bg/95 backdrop-blur-md border-b border-border/20 sticky top-0 z-50 shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}

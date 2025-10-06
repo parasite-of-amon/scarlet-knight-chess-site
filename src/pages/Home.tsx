@@ -10,27 +10,27 @@ const Home = () => {
   return <div>
       {/* Hero Section */}
       <section className="relative bg-dark-bg text-dark-foreground py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/95 to-dark-bg/70 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/40 to-dark-bg/20 z-10" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{
         backgroundImage: `url(${heroImage})`
       }} />
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Welcome to the
               <br />
-              <span className="text-primary">Rutgers University Chess Club!</span>
+              <span className="text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Rutgers University Chess Club!</span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-lg text-white/95 mb-4 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               Whether you are just a beginner or have a ton of experience in the game of chess,
               this club is the place for you. Stop by to play games with other Scarlet Knights
               and discuss chess-related current events.
             </p>
-            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              We have in-person meetings and tournaments throughout the school year. You are 
+            <p className="text-lg text-white/95 mb-4 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+              We have in-person meetings and tournaments throughout the school year. You are
               welcome to bring your own boards, pieces, or clocks but supplies will be provided.
             </p>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed font-semibold">
+            <p className="text-lg text-white mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             </p>
             <div className="flex gap-4">
@@ -177,15 +177,15 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="relative py-32 bg-dark-bg text-dark-foreground overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/95 to-dark-bg/70 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/40 to-dark-bg/20 z-10" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{
         backgroundImage: `url(${trophyImage})`
       }} />
         <div className="container mx-auto px-4 text-center relative z-20">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Join Our Club This Year
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-white/95 mb-8 max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
             No fees, no attendance obligation, equipment provided.
           </p>
