@@ -3,58 +3,56 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, MapPin, Trophy, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getUpcomingEvents, getPastEvents, getCalendarEvents, type UpcomingEvent, type PastEvent, type CalendarEvent } from "@/lib/eventsService";
+import { seedDatabase } from "@/lib/seedData";
+import { initDatabase } from "@/lib/db";
 
 const Events = () => {
-  const pastEvents = [
-    {
-      title: "Spring 2023 Blitz Tournament",
-      date: "May 7, 2023",
-      participants: "18 participants",
-      rounds: "5 rounds",
-      rating: "USCF Rated",
-      winners: [
-        { place: "1st", name: "Ansh Shah", score: "5-0" },
-        { place: "2nd", name: "Joaquin Carlson", score: "4-1" },
-        { place: "3rd", name: "Jouan Yu", score: "3.5-1.5" },
-      ],
-    },
-    {
-      title: "Fall 2023 Blitz Tournament",
-      date: "November 11, 2023",
-      participants: "16 participants",
-      rounds: "7 rounds",
-      rating: "USCF Rated",
-      winners: [
-        { place: "1st", name: "Aravind Kumar", score: "7-0" },
-        { place: "2nd (tie)", name: "Lev Zilbermintz & Ansh Shah", score: "5-2" },
-        { place: "3rd", name: "Jatin Thakkar", score: "4.5-2.5" },
-        { place: "Unrated Winner", name: "Joe", score: "" },
-      ],
-    },
-    {
-      title: "US Amateur Team East 2023",
-      date: "February 2023",
-      participants: "Team Event",
-      description: "Rutgers Chess Club participated in this prestigious team tournament.",
-    },
-  ];
+  const [upcomingEvents, setUpcomingEvents] = useState<UpcomingEvent[]>([]);
+  const [pastEvents, setPastEvents] = useState<PastEvent[]>([]);
+  const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const upcomingEvents = [
-    {
-      title: "Weekly Meeting",
-      date: "Every Tuesday",
-      time: "7:00 PM - 9:00 PM",
-      location: "Busch Student Center - Food Court",
-      description: "Casual games, practice, and chess discussion",
-    },
-    {
-      title: "Weekly Meeting",
-      date: "Every Friday",
-      time: "7:00 PM - 9:00 PM",
-      location: "Busch Student Center - The Cove or Food Court",
-      description: "Casual games, practice, and chess discussion",
-    },
-  ];
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        await initDatabase();
+        const upcoming = getUpcomingEvents();
+        if (upcoming.length === 0) {
+          await seedDatabase();
+        }
+        setUpcomingEvents(getUpcomingEvents());
+        setPastEvents(getPastEvents());
+        setCalendarEvents(getCalendarEvents());
+        setLoading(false);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load events');
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg">Loading events...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
+
+  const meetingCalendarEvents = calendarEvents.filter(event => event.event_type === 'meeting');
 
   return (
     <div>
@@ -196,27 +194,21 @@ const Events = () => {
                 <CardContent className="p-8">
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-green-500/10 border-2 border-green-500/20 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="text-2xl">🟩</span>
-                          <h3 className="font-serif text-xl font-bold">Tuesday Meetings</h3>
-                        </div>
-                        <p className="text-muted-foreground mb-2">Every Tuesday</p>
-                        <p className="font-medium">7:00 PM - 9:00 PM</p>
-                        <p className="text-sm text-muted-foreground">Busch Student Center - Food Court</p>
-                        <p className="text-sm mt-3 text-muted-foreground">Casual games, practice, and chess discussion</p>
-                      </div>
-
-                      <div className="bg-green-500/10 border-2 border-green-500/20 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="text-2xl">🟩</span>
-                          <h3 className="font-serif text-xl font-bold">Friday Meetings</h3>
-                        </div>
-                        <p className="text-muted-foreground mb-2">Every Friday</p>
-                        <p className="font-medium">7:00 PM - 9:00 PM</p>
-                        <p className="text-sm text-muted-foreground">Busch Student Center - The Cove or Food Court</p>
-                        <p className="text-sm mt-3 text-muted-foreground">Casual games, practice, and chess discussion</p>
-                      </div>
+                      {meetingCalendarEvents.map((event, index) => {
+                        const colorClass = event.color_code === 'green' ? 'bg-green-500/10 border-green-500/20' : 'bg-blue-500/10 border-blue-500/20';
+                        return (
+                          <div key={index} className={`${colorClass} border-2 rounded-lg p-6`}>
+                            <div className="flex items-center gap-2 mb-3">
+                              <span className="text-2xl">🟩</span>
+                              <h3 className="font-serif text-xl font-bold">{event.title}</h3>
+                            </div>
+                            <p className="text-muted-foreground mb-2">{event.date}</p>
+                            <p className="font-medium">{event.time}</p>
+                            <p className="text-sm text-muted-foreground">{event.location}</p>
+                            <p className="text-sm mt-3 text-muted-foreground">{event.description}</p>
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <div className="border-t pt-6">
