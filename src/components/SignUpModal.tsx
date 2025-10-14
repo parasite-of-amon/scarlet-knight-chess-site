@@ -26,8 +26,8 @@ const SignUpModal = ({ open, onOpenChange, onSwitchToSignIn }: SignUpModalProps)
             Create your account to join our chess community
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div className="space-y-2">
+        <div className="space-y-3 py-2">
+          <div className="space-y-1.5">
             <Label htmlFor="signup-name">Full Name</Label>
             <Input
               id="signup-name"
@@ -35,7 +35,7 @@ const SignUpModal = ({ open, onOpenChange, onSwitchToSignIn }: SignUpModalProps)
               placeholder="John Doe"
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="signup-email">Email</Label>
             <Input
               id="signup-email"
@@ -43,7 +43,7 @@ const SignUpModal = ({ open, onOpenChange, onSwitchToSignIn }: SignUpModalProps)
               placeholder="your.email@example.com"
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="signup-password">Password</Label>
             <Input
               id="signup-password"
@@ -51,7 +51,7 @@ const SignUpModal = ({ open, onOpenChange, onSwitchToSignIn }: SignUpModalProps)
               placeholder="Create a strong password"
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="signup-confirm-password">Confirm Password</Label>
             <Input
               id="signup-confirm-password"
@@ -59,22 +59,22 @@ const SignUpModal = ({ open, onOpenChange, onSwitchToSignIn }: SignUpModalProps)
               placeholder="Re-enter your password"
             />
           </div>
-          <div className="space-y-3 pt-2 border-t">
+          <div className="space-y-2 pt-2 border-t">
             <div className="flex items-start space-x-2">
               <Checkbox id="admin-signup" />
-              <div className="space-y-1 leading-none">
+              <div className="leading-none">
                 <label
                   htmlFor="admin-signup"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   Sign up as Admin
                 </label>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground mt-1">
                   Check this if you want to register as an administrator
                 </p>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="admin-key">Admin Key</Label>
               <Input
                 id="admin-key"
@@ -86,10 +86,10 @@ const SignUpModal = ({ open, onOpenChange, onSwitchToSignIn }: SignUpModalProps)
               </p>
             </div>
           </div>
-          <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 mt-4">
             Sign Up
           </Button>
-          <div className="text-center text-sm">
+          <div className="text-center text-sm pt-2">
             <span className="text-muted-foreground">Already have an account? </span>
             <button
               onClick={onSwitchToSignIn}
