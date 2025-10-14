@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, MapPin, Trophy, Users, Plus } from "lucide-react";
+import { Calendar, MapPin, Trophy, Users, Plus, Trash2, Edit } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUpcomingEvents, getPastEvents, getCalendarEvents, type UpcomingEvent, type PastEvent, type CalendarEvent } from "@/lib/eventsService";
@@ -109,7 +109,7 @@ const Events = () => {
                 {upcomingEvents.map((event, index) => {
                   const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                   return (
-                    <Card key={index} className="border-2 hover:border-primary transition-colors">
+                    <Card key={index} className="border-2 hover:border-red-500 transition-colors">
                       <CardContent className="p-8">
                         {eventImages.length > 0 && (
                           <ImageCarousel images={eventImages} alt={event.title} />
@@ -128,11 +128,24 @@ const Events = () => {
                           )}
                         </div>
                         {event.description && <p className="text-muted-foreground mb-6">{event.description}</p>}
-                        <Link to="/membership" className="block">
-                          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
-                            Learn More
+                        <div className="flex gap-3">
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => {}}
+                          >
+                            <Trash2 className="w-4 h-4 mr-2" />
+                            Delete
                           </Button>
-                        </Link>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {}}
+                          >
+                            <Edit className="w-4 h-4 mr-2" />
+                            Edit
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   );
@@ -151,7 +164,7 @@ const Events = () => {
                 {pastEvents.map((event, index) => {
                   const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                   return (
-                    <Card key={index} className="border-2">
+                    <Card key={index} className="border-2 hover:border-red-500 transition-colors">
                       <CardContent className="p-8">
                         {eventImages.length > 0 && (
                           <ImageCarousel images={eventImages} alt={event.title} />
@@ -184,7 +197,7 @@ const Events = () => {
                       </div>
 
                       {event.winners && (
-                        <div className="bg-secondary rounded-lg p-6">
+                        <div className="bg-secondary rounded-lg p-6 mb-6">
                           <h4 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
                             <Trophy className="w-5 h-5 text-primary" />
                             Winners
@@ -201,8 +214,26 @@ const Events = () => {
                       )}
 
                         {event.description && (
-                          <p className="text-muted-foreground mt-4">{event.description}</p>
+                          <p className="text-muted-foreground mb-6">{event.description}</p>
                         )}
+                        <div className="flex gap-3">
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => {}}
+                          >
+                            <Trash2 className="w-4 h-4 mr-2" />
+                            Delete
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {}}
+                          >
+                            <Edit className="w-4 h-4 mr-2" />
+                            Edit
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   );
@@ -225,7 +256,7 @@ const Events = () => {
                         const colorClass = event.color_code === 'green' ? 'bg-green-500/10 border-green-500/20' : 'bg-blue-500/10 border-blue-500/20';
                         const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                         return (
-                          <div key={index} className={`${colorClass} border-2 rounded-lg p-6`}>
+                          <div key={index} className={`${colorClass} border-2 rounded-lg p-6 hover:border-red-500 transition-colors`}>
                             {eventImages.length > 0 && (
                               <div className="mb-4">
                                 <ImageCarousel images={eventImages} alt={event.title} />
@@ -238,7 +269,25 @@ const Events = () => {
                             <p className="text-muted-foreground mb-2">{event.date}</p>
                             <p className="font-medium">{event.time}</p>
                             <p className="text-sm text-muted-foreground">{event.location}</p>
-                            <p className="text-sm mt-3 text-muted-foreground">{event.description}</p>
+                            <p className="text-sm mt-3 mb-4 text-muted-foreground">{event.description}</p>
+                            <div className="flex gap-3">
+                              <Button
+                                variant="destructive"
+                                size="sm"
+                                onClick={() => {}}
+                              >
+                                <Trash2 className="w-4 h-4 mr-2" />
+                                Delete
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {}}
+                              >
+                                <Edit className="w-4 h-4 mr-2" />
+                                Edit
+                              </Button>
+                            </div>
                           </div>
                         );
                       })}
