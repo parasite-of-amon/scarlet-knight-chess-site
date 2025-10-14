@@ -1,12 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, MapPin, Trophy, Users } from "lucide-react";
+import { Calendar, MapPin, Trophy, Users, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUpcomingEvents, getPastEvents, getCalendarEvents, type UpcomingEvent, type PastEvent, type CalendarEvent } from "@/lib/eventsService";
 import { seedDatabase } from "@/lib/seedData";
 import { initDatabase } from "@/lib/db";
+import { CreateEventModal } from "@/components/CreateEventModal";
 
 const Events = () => {
   const [upcomingEvents, setUpcomingEvents] = useState<UpcomingEvent[]>([]);
@@ -14,6 +15,7 @@ const Events = () => {
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -78,6 +80,16 @@ const Events = () => {
       {/* Events Content */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
+          <div className="flex justify-end mb-6">
+            <Button
+              onClick={() => setIsCreateModalOpen(true)}
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Create Event
+            </Button>
+          </div>
+
           <Tabs defaultValue="upcoming" className="w-full">
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12">
               <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
@@ -268,6 +280,11 @@ const Events = () => {
           </Tabs>
         </div>
       </section>
+
+      <CreateEventModal
+        open={isCreateModalOpen}
+        onOpenChange={setIsCreateModalOpen}
+      />
     </div>
   );
 };
