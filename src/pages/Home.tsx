@@ -10,37 +10,30 @@ const Home = () => {
   return <div>
       {/* Hero Section */}
       <section className="relative bg-dark-bg text-dark-foreground py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/40 to-dark-bg/20 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center" style={{
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85 z-10" />
+        <div className="absolute inset-0 bg-cover bg-center blur-[1px]" style={{
         backgroundImage: `url(${heroImage})`
       }} />
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
               Welcome to the
               <br />
-              <span className="text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Rutgers University Chess Club!</span>
+              <span className="text-primary drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">Rutgers University Chess Club!</span>
             </h1>
-            <p className="text-lg text-white/95 mb-4 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-              Whether you are just a beginner or have a ton of experience in the game of chess,
-              this club is the place for you. Stop by to play games with other Scarlet Knights
-              and discuss chess-related current events.
+            <p className="text-xl text-white mb-8 leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              Join us every Tuesday and Friday, 7-9 PM at Busch Student Center.
+              <br />
+              All skill levels welcome!
             </p>
-            <p className="text-lg text-white/95 mb-4 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-              We have in-person meetings and tournaments throughout the school year. You are
-              welcome to bring your own boards, pieces, or clocks but supplies will be provided.
-            </p>
-            <p className="text-lg text-white mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-              We hold our meetings in Busch Student Center food court every Tuesday and Friday 7-9 PM!
-            </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/membership">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 text-center">
+                <Button className="bg-gradient-to-r from-primary to-pink-600 text-white hover:from-pink-600 hover:to-primary text-lg px-10 py-7 text-center font-bold shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105 transition-all duration-300 border-2 border-white/20">
                   Get Started
                 </Button>
               </Link>
               <Link to="/events">
-                <Button variant="outline" className="text-dark-foreground border-dark-foreground hover:bg-dark-foreground hover:text-dark-bg text-lg px-8 py-6 text-center">
+                <Button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white hover:from-orange-600 hover:to-amber-500 text-lg px-10 py-7 text-center font-bold shadow-[0_0_30px_rgba(251,191,36,0.6)] hover:shadow-[0_0_40px_rgba(251,191,36,0.8)] hover:scale-105 transition-all duration-300 border-2 border-white/20">
                   Our Events
                 </Button>
               </Link>
