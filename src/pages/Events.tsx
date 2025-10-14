@@ -8,6 +8,7 @@ import { getUpcomingEvents, getPastEvents, getCalendarEvents, type UpcomingEvent
 import { seedDatabase } from "@/lib/seedData";
 import { initDatabase } from "@/lib/db";
 import { CreateEventModal } from "@/components/CreateEventModal";
+import { ImageCarousel } from "@/components/ImageCarousel";
 
 const Events = () => {
   const [upcomingEvents, setUpcomingEvents] = useState<UpcomingEvent[]>([]);
@@ -105,29 +106,35 @@ const Events = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                {upcomingEvents.map((event, index) => (
-                  <Card key={index} className="border-2 hover:border-primary transition-colors">
-                    <CardContent className="p-8">
-                      <h3 className="font-serif text-2xl font-bold mb-4">{event.title}</h3>
-                      <div className="space-y-3 mb-6">
-                        <div className="flex items-center gap-3 text-muted-foreground">
-                          <Calendar className="w-5 h-5 text-primary" />
-                          <span>{event.date} • {event.time}</span>
+                {upcomingEvents.map((event, index) => {
+                  const eventImages = event.images ? JSON.parse(event.images) : [];
+                  return (
+                    <Card key={index} className="border-2 hover:border-primary transition-colors">
+                      <CardContent className="p-8">
+                        {eventImages.length > 0 && (
+                          <ImageCarousel images={eventImages} alt={event.title} />
+                        )}
+                        <h3 className="font-serif text-2xl font-bold mb-4">{event.title}</h3>
+                        <div className="space-y-3 mb-6">
+                          <div className="flex items-center gap-3 text-muted-foreground">
+                            <Calendar className="w-5 h-5 text-primary" />
+                            <span>{event.date} • {event.time}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-muted-foreground">
+                            <MapPin className="w-5 h-5 text-primary" />
+                            <span>{event.location}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-3 text-muted-foreground">
-                          <MapPin className="w-5 h-5 text-primary" />
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground mb-6">{event.description}</p>
-                      <Link to="/membership" className="block">
-                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
-                          Learn More
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                ))}
+                        <p className="text-muted-foreground mb-6">{event.description}</p>
+                        <Link to="/membership" className="block">
+                          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
+                            Learn More
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </TabsContent>
 
@@ -139,12 +146,17 @@ const Events = () => {
               </div>
 
               <div className="space-y-8 max-w-4xl mx-auto">
-                {pastEvents.map((event, index) => (
-                  <Card key={index} className="border-2">
-                    <CardContent className="p-8">
-                      <div className="flex items-start justify-between mb-6">
-                        <div>
-                          <h3 className="font-serif text-2xl font-bold mb-2">{event.title}</h3>
+                {pastEvents.map((event, index) => {
+                  const eventImages = event.images ? JSON.parse(event.images) : [];
+                  return (
+                    <Card key={index} className="border-2">
+                      <CardContent className="p-8">
+                        {eventImages.length > 0 && (
+                          <ImageCarousel images={eventImages} alt={event.title} />
+                        )}
+                        <div className="flex items-start justify-between mb-6">
+                          <div>
+                            <h3 className="font-serif text-2xl font-bold mb-2">{event.title}</h3>
                           <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                             <span className="flex items-center gap-2">
                               <Calendar className="w-4 h-4 text-primary" />
@@ -186,12 +198,13 @@ const Events = () => {
                         </div>
                       )}
 
-                      {event.description && (
-                        <p className="text-muted-foreground mt-4">{event.description}</p>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))}
+                        {event.description && (
+                          <p className="text-muted-foreground mt-4">{event.description}</p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </TabsContent>
 
@@ -208,8 +221,14 @@ const Events = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {meetingCalendarEvents.map((event, index) => {
                         const colorClass = event.color_code === 'green' ? 'bg-green-500/10 border-green-500/20' : 'bg-blue-500/10 border-blue-500/20';
+                        const eventImages = event.images ? JSON.parse(event.images) : [];
                         return (
                           <div key={index} className={`${colorClass} border-2 rounded-lg p-6`}>
+                            {eventImages.length > 0 && (
+                              <div className="mb-4">
+                                <ImageCarousel images={eventImages} alt={event.title} />
+                              </div>
+                            )}
                             <div className="flex items-center gap-2 mb-3">
                               <span className="text-2xl">🟩</span>
                               <h3 className="font-serif text-xl font-bold">{event.title}</h3>

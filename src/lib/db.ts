@@ -25,6 +25,7 @@ export const initDatabase = async (): Promise<Database> => {
         time TEXT NOT NULL,
         location TEXT NOT NULL,
         description TEXT,
+        images TEXT,
         is_recurring INTEGER DEFAULT 0,
         recurrence_pattern TEXT,
         created_at TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -39,6 +40,7 @@ export const initDatabase = async (): Promise<Database> => {
         rounds TEXT,
         rating TEXT,
         description TEXT,
+        images TEXT,
         created_at TEXT DEFAULT CURRENT_TIMESTAMP,
         updated_at TEXT DEFAULT CURRENT_TIMESTAMP
       );
@@ -61,6 +63,7 @@ export const initDatabase = async (): Promise<Database> => {
         description TEXT,
         event_type TEXT NOT NULL,
         color_code TEXT NOT NULL,
+        images TEXT,
         is_recurring INTEGER DEFAULT 0,
         recurrence_pattern TEXT,
         created_at TEXT DEFAULT CURRENT_TIMESTAMP,

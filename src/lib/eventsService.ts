@@ -7,6 +7,7 @@ export interface UpcomingEvent {
   time: string;
   location: string;
   description?: string;
+  images?: string;
   is_recurring?: boolean;
   recurrence_pattern?: string;
 }
@@ -19,6 +20,7 @@ export interface PastEvent {
   rounds?: string;
   rating?: string;
   description?: string;
+  images?: string;
   winners?: Winner[];
 }
 
@@ -39,6 +41,7 @@ export interface CalendarEvent {
   description?: string;
   event_type: 'meeting' | 'tournament' | 'social' | 'deadline';
   color_code: string;
+  images?: string;
   is_recurring?: boolean;
   recurrence_pattern?: string;
 }

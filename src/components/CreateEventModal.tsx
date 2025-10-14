@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ImagePlus, X } from "lucide-react";
 
 interface CreateEventModalProps {
   open: boolean;
@@ -27,10 +28,31 @@ interface CreateEventModalProps {
 export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) => {
   const [eventType, setEventType] = useState<"upcoming" | "past" | "calendar">("upcoming");
   const [isRecurring, setIsRecurring] = useState(false);
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setSelectedImages(prev => [...prev, ...files]);
+
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreviews(prev => [...prev, reader.result as string]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeImage = (index: number) => {
+    setSelectedImages(prev => prev.filter((_, i) => i !== index));
+    setImagePreviews(prev => prev.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted - UI only for now");
+    console.log("Selected images:", selectedImages);
   };
 
   return (
@@ -78,6 +100,53 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
                   placeholder="Enter event description"
                   rows={4}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Event Images (Optional)</Label>
+                <div className="border-2 border-dashed rounded-lg p-6 text-center">
+                  <input
+                    type="file"
+                    id="upcoming-images"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="upcoming-images"
+                    className="cursor-pointer flex flex-col items-center gap-2"
+                  >
+                    <ImagePlus className="w-12 h-12 text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground">
+                      Click to upload images or drag and drop
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      PNG, JPG, GIF up to 10MB each
+                    </span>
+                  </label>
+                </div>
+
+                {imagePreviews.length > 0 && (
+                  <div className="grid grid-cols-3 gap-4 mt-4">
+                    {imagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-lg"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="flex items-center space-x-2">
@@ -202,6 +271,53 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
                   </Button>
                 </div>
               </div>
+
+              <div className="space-y-2">
+                <Label>Event Images (Optional)</Label>
+                <div className="border-2 border-dashed rounded-lg p-6 text-center">
+                  <input
+                    type="file"
+                    id="past-images"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="past-images"
+                    className="cursor-pointer flex flex-col items-center gap-2"
+                  >
+                    <ImagePlus className="w-12 h-12 text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground">
+                      Click to upload images or drag and drop
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      PNG, JPG, GIF up to 10MB each
+                    </span>
+                  </label>
+                </div>
+
+                {imagePreviews.length > 0 && (
+                  <div className="grid grid-cols-3 gap-4 mt-4">
+                    {imagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-lg"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </TabsContent>
 
             <TabsContent value="calendar" className="space-y-4 mt-6">
@@ -298,6 +414,53 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
                   </Select>
                 </div>
               )}
+
+              <div className="space-y-2">
+                <Label>Event Images (Optional)</Label>
+                <div className="border-2 border-dashed rounded-lg p-6 text-center">
+                  <input
+                    type="file"
+                    id="calendar-images"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="calendar-images"
+                    className="cursor-pointer flex flex-col items-center gap-2"
+                  >
+                    <ImagePlus className="w-12 h-12 text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground">
+                      Click to upload images or drag and drop
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      PNG, JPG, GIF up to 10MB each
+                    </span>
+                  </label>
+                </div>
+
+                {imagePreviews.length > 0 && (
+                  <div className="grid grid-cols-3 gap-4 mt-4">
+                    {imagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-lg"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </TabsContent>
           </Tabs>
 
