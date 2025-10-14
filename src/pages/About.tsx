@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Target, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -25,47 +24,15 @@ const About = () => {
         </div>
       </section>
 
-      {/* Main About Content */}
+      {/* Main About Content - Editable by Admin */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800"
-                alt="Chess players"
-                className="rounded-lg shadow-2xl"
-              />
-            </div>
-            <div>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-6">
-                <div className="text-4xl">🏆</div>
-              </div>
-              <h2 className="font-serif text-4xl font-bold mb-6">
-                We Are Best Chess
-                <br />
-                Club Since 2010
-              </h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                The Rutgers University Chess Club has been serving students for more than a century.
-                We provide an inclusive environment for skill development and maintain a strong campus
-                presence. Our club welcomes players of all levels, from beginners to experienced players.
-              </p>
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                <div className="text-center p-6 bg-secondary rounded-lg">
-                  <div className="text-5xl font-bold text-primary mb-2">12+</div>
-                  <div className="text-sm text-muted-foreground">Years Experienced</div>
-                </div>
-                <div className="text-center p-6 bg-secondary rounded-lg">
-                  <div className="text-5xl font-bold text-primary mb-2">125+</div>
-                  <div className="text-sm text-muted-foreground">Outstanding Members</div>
-                </div>
-              </div>
-              <Link to="/membership">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Join Now
-                </Button>
-              </Link>
-            </div>
+          <div className="min-h-[400px] border-2 border-dashed border-muted rounded-lg flex items-center justify-center">
+            <p className="text-muted-foreground text-center">
+              This section can be edited by admins.
+              <br />
+              Sign in as admin to add content here.
+            </p>
           </div>
 
           {/* Vision & Mission */}

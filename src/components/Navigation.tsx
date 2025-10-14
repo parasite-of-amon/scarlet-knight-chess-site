@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import SignInModal from "./SignInModal";
+import SignUpModal from "./SignUpModal";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   const location = useLocation();
 
   const navItems = [
@@ -46,10 +50,17 @@ const Navigation = () => {
               </Link>
             ))}
             <div className="flex items-center gap-2">
-              <Button variant="outline" className="border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark-bg font-medium">
+              <Button
+                variant="outline"
+                className="border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark-bg font-medium"
+                onClick={() => setShowSignIn(true)}
+              >
                 Sign In
               </Button>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+              <Button
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium"
+                onClick={() => setShowSignUp(true)}
+              >
                 Sign Up
               </Button>
             </div>
@@ -82,16 +93,45 @@ const Navigation = () => {
               </Link>
             ))}
             <div className="space-y-2">
-              <Button variant="outline" className="w-full border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark-bg font-medium">
+              <Button
+                variant="outline"
+                className="w-full border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark-bg font-medium"
+                onClick={() => {
+                  setShowSignIn(true);
+                  setIsOpen(false);
+                }}
+              >
                 Sign In
               </Button>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+              <Button
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium"
+                onClick={() => {
+                  setShowSignUp(true);
+                  setIsOpen(false);
+                }}
+              >
                 Sign Up
               </Button>
             </div>
           </div>
         )}
       </div>
+      <SignInModal
+        open={showSignIn}
+        onOpenChange={setShowSignIn}
+        onSwitchToSignUp={() => {
+          setShowSignIn(false);
+          setShowSignUp(true);
+        }}
+      />
+      <SignUpModal
+        open={showSignUp}
+        onOpenChange={setShowSignUp}
+        onSwitchToSignIn={() => {
+          setShowSignUp(false);
+          setShowSignIn(true);
+        }}
+      />
     </nav>
   );
 };
