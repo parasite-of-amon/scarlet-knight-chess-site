@@ -10,8 +10,8 @@ const Home = () => {
   return <div>
       {/* Hero Section */}
       <section className="relative bg-dark-bg text-dark-foreground py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/40 to-dark-bg/20 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center" style={{
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85 z-10" />
+        <div className="absolute inset-0 bg-cover bg-center blur-[1px]" style={{
         backgroundImage: `url(${heroImage})`
       }} />
         <div className="container mx-auto px-4 relative z-20">
