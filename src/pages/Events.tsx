@@ -107,7 +107,7 @@ const Events = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                 {upcomingEvents.map((event, index) => {
-                  const eventImages = event.images ? JSON.parse(event.images) : [];
+                  const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                   return (
                     <Card key={index} className="border-2 hover:border-primary transition-colors">
                       <CardContent className="p-8">
@@ -118,14 +118,16 @@ const Events = () => {
                         <div className="space-y-3 mb-6">
                           <div className="flex items-center gap-3 text-muted-foreground">
                             <Calendar className="w-5 h-5 text-primary" />
-                            <span>{event.date} • {event.time}</span>
+                            <span>{event.date}{event.time ? ` • ${event.time}` : ''}</span>
                           </div>
-                          <div className="flex items-center gap-3 text-muted-foreground">
-                            <MapPin className="w-5 h-5 text-primary" />
-                            <span>{event.location}</span>
-                          </div>
+                          {event.location && (
+                            <div className="flex items-center gap-3 text-muted-foreground">
+                              <MapPin className="w-5 h-5 text-primary" />
+                              <span>{event.location}</span>
+                            </div>
+                          )}
                         </div>
-                        <p className="text-muted-foreground mb-6">{event.description}</p>
+                        {event.description && <p className="text-muted-foreground mb-6">{event.description}</p>}
                         <Link to="/membership" className="block">
                           <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
                             Learn More
@@ -147,7 +149,7 @@ const Events = () => {
 
               <div className="space-y-8 max-w-4xl mx-auto">
                 {pastEvents.map((event, index) => {
-                  const eventImages = event.images ? JSON.parse(event.images) : [];
+                  const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                   return (
                     <Card key={index} className="border-2">
                       <CardContent className="p-8">
@@ -221,7 +223,7 @@ const Events = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {meetingCalendarEvents.map((event, index) => {
                         const colorClass = event.color_code === 'green' ? 'bg-green-500/10 border-green-500/20' : 'bg-blue-500/10 border-blue-500/20';
-                        const eventImages = event.images ? JSON.parse(event.images) : [];
+                        const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                         return (
                           <div key={index} className={`${colorClass} border-2 rounded-lg p-6`}>
                             {eventImages.length > 0 && (

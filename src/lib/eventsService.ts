@@ -4,10 +4,10 @@ export interface UpcomingEvent {
   id?: number;
   title: string;
   date: string;
-  time: string;
-  location: string;
+  time?: string;
+  location?: string;
   description?: string;
-  images?: string;
+  image_paths?: string;
   is_recurring?: boolean;
   recurrence_pattern?: string;
 }
@@ -20,7 +20,7 @@ export interface PastEvent {
   rounds?: string;
   rating?: string;
   description?: string;
-  images?: string;
+  image_paths?: string;
   winners?: Winner[];
 }
 
@@ -36,12 +36,12 @@ export interface CalendarEvent {
   id?: number;
   title: string;
   date: string;
-  time: string;
-  location: string;
+  time?: string;
+  location?: string;
   description?: string;
-  event_type: 'meeting' | 'tournament' | 'social' | 'deadline';
-  color_code: string;
-  images?: string;
+  event_type?: 'meeting' | 'tournament' | 'social' | 'deadline';
+  color_code?: string;
+  image_paths?: string;
   is_recurring?: boolean;
   recurrence_pattern?: string;
 }
@@ -129,15 +129,15 @@ export const getCalendarEvents = (): CalendarEvent[] => {
 export const addUpcomingEvent = (event: UpcomingEvent): void => {
   const db = getDatabase();
   db.run(
-    `INSERT INTO upcoming_events (title, date, time, location, description, images, is_recurring, recurrence_pattern)
+    `INSERT INTO upcoming_events (title, date, time, location, description, image_paths, is_recurring, recurrence_pattern)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       event.title,
       event.date,
-      event.time,
-      event.location,
+      event.time || null,
+      event.location || null,
       event.description || null,
-      event.images || null,
+      event.image_paths || null,
       event.is_recurring ? 1 : 0,
       event.recurrence_pattern || null
     ]
@@ -148,7 +148,7 @@ export const addUpcomingEvent = (event: UpcomingEvent): void => {
 export const addPastEvent = (event: PastEvent): void => {
   const db = getDatabase();
   db.run(
-    `INSERT INTO past_events (title, date, participants, rounds, rating, description, images)
+    `INSERT INTO past_events (title, date, participants, rounds, rating, description, image_paths)
      VALUES (?, ?, ?, ?, ?, ?, ?)`,
     [
       event.title,
@@ -157,7 +157,7 @@ export const addPastEvent = (event: PastEvent): void => {
       event.rounds || null,
       event.rating || null,
       event.description || null,
-      event.images || null
+      event.image_paths || null
     ]
   );
 
@@ -180,17 +180,17 @@ export const addPastEvent = (event: PastEvent): void => {
 export const addCalendarEvent = (event: CalendarEvent): void => {
   const db = getDatabase();
   db.run(
-    `INSERT INTO calendar_events (title, date, time, location, description, event_type, color_code, images, is_recurring, recurrence_pattern)
+    `INSERT INTO calendar_events (title, date, time, location, description, event_type, color_code, image_paths, is_recurring, recurrence_pattern)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       event.title,
       event.date,
-      event.time,
-      event.location,
+      event.time || null,
+      event.location || null,
       event.description || null,
-      event.event_type,
-      event.color_code,
-      event.images || null,
+      event.event_type || 'meeting',
+      event.color_code || 'green',
+      event.image_paths || null,
       event.is_recurring ? 1 : 0,
       event.recurrence_pattern || null
     ]

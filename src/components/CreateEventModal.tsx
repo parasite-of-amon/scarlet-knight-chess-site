@@ -21,6 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImagePlus, X } from "lucide-react";
 import { addUpcomingEvent, addPastEvent, addCalendarEvent } from "@/lib/eventsService";
 import { toast } from "sonner";
+import { compressMultipleImages } from "@/lib/imageService";
 
 interface CreateEventModalProps {
   open: boolean;
@@ -34,6 +35,7 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState<string>("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -68,29 +70,61 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
     try {
       const formData = new FormData(e.currentTarget);
 
-      const imagesJson = imagePreviews.length > 0 ? JSON.stringify(imagePreviews) : null;
+      const title = formData.get(`${eventType}-title`) as string;
+      const date = formData.get(`${eventType}-date`) as string;
+
+      if (!title || !date) {
+        toast.error("Title and date are required fields");
+        setIsSubmitting(false);
+        return;
+      }
+
+      let imagePathsJson: string | null = null;
+
+      if (selectedImages.length > 0) {
+        try {
+          setLoadingMessage("Compressing images...");
+          const compressedImages = await compressMultipleImages(
+            selectedImages,
+            eventType,
+            { maxWidth: 1920, maxHeight: 1080, quality: 0.8 },
+            (current, total) => {
+              setLoadingMessage(`Compressing images... ${current}/${total}`);
+            }
+          );
+          imagePathsJson = JSON.stringify(compressedImages.map(img => img.dataUrl));
+        } catch (error) {
+          console.error("Error compressing images:", error);
+          toast.error(error instanceof Error ? error.message : "Failed to process images");
+          setIsSubmitting(false);
+          setLoadingMessage("");
+          return;
+        }
+      }
+
+      setLoadingMessage("Creating event...");
 
       if (eventType === "upcoming") {
         addUpcomingEvent({
-          title: formData.get("upcoming-title") as string,
-          date: formData.get("upcoming-date") as string,
-          time: formData.get("upcoming-time") as string,
-          location: formData.get("upcoming-location") as string,
-          description: formData.get("upcoming-description") as string,
-          images: imagesJson || undefined,
+          title,
+          date,
+          time: formData.get("upcoming-time") as string || undefined,
+          location: formData.get("upcoming-location") as string || undefined,
+          description: formData.get("upcoming-description") as string || undefined,
+          image_paths: imagePathsJson || undefined,
           is_recurring: isRecurring,
           recurrence_pattern: isRecurring ? formData.get("upcoming-pattern") as string : undefined,
         });
         toast.success("Upcoming event created successfully!");
       } else if (eventType === "past") {
         const pastEvent = {
-          title: formData.get("past-title") as string,
-          date: formData.get("past-date") as string,
-          participants: formData.get("past-participants") as string,
-          rounds: formData.get("past-rounds") as string,
-          rating: formData.get("past-rating") as string,
-          description: formData.get("past-description") as string,
-          images: imagesJson || undefined,
+          title,
+          date,
+          participants: formData.get("past-participants") as string || undefined,
+          rounds: formData.get("past-rounds") as string || undefined,
+          rating: formData.get("past-rating") as string || undefined,
+          description: formData.get("past-description") as string || undefined,
+          image_paths: imagePathsJson || undefined,
           winners: [
             {
               place: formData.get("winner1-place") as string,
@@ -112,15 +146,18 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
         addPastEvent(pastEvent);
         toast.success("Past event created successfully!");
       } else if (eventType === "calendar") {
+        const calendarType = formData.get("calendar-type") as string || undefined;
+        const colorCode = formData.get("calendar-color") as string || undefined;
+
         addCalendarEvent({
-          title: formData.get("calendar-title") as string,
-          date: formData.get("calendar-date") as string,
-          time: formData.get("calendar-time") as string,
-          location: formData.get("calendar-location") as string,
-          description: formData.get("calendar-description") as string,
-          event_type: formData.get("calendar-type") as "meeting" | "tournament" | "social" | "deadline",
-          color_code: formData.get("calendar-color") as string,
-          images: imagesJson || undefined,
+          title,
+          date,
+          time: formData.get("calendar-time") as string || undefined,
+          location: formData.get("calendar-location") as string || undefined,
+          description: formData.get("calendar-description") as string || undefined,
+          event_type: calendarType as "meeting" | "tournament" | "social" | "deadline" | undefined,
+          color_code: colorCode,
+          image_paths: imagePathsJson || undefined,
           is_recurring: isRecurring,
           recurrence_pattern: isRecurring ? formData.get("calendar-pattern") as string : undefined,
         });
@@ -129,13 +166,15 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
 
       resetForm();
       onOpenChange(false);
+      setLoadingMessage("");
 
       if (onEventCreated) {
         onEventCreated();
       }
     } catch (error) {
       console.error("Error creating event:", error);
-      toast.error("Failed to create event. Please try again.");
+      toast.error(error instanceof Error ? error.message : "Failed to create event. Please try again.");
+      setLoadingMessage("");
     } finally {
       setIsSubmitting(false);
     }
@@ -170,13 +209,13 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
 
                 <div className="space-y-2">
                   <Label htmlFor="upcoming-time">Time</Label>
-                  <Input id="upcoming-time" name="upcoming-time" placeholder="e.g., 7:00 PM - 9:00 PM" required />
+                  <Input id="upcoming-time" name="upcoming-time" placeholder="e.g., 7:00 PM - 9:00 PM" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="upcoming-location">Location</Label>
-                <Input id="upcoming-location" name="upcoming-location" placeholder="Enter location" required />
+                <Input id="upcoming-location" name="upcoming-location" placeholder="Enter location" />
               </div>
 
               <div className="space-y-2">
@@ -422,13 +461,13 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
 
                 <div className="space-y-2">
                   <Label htmlFor="calendar-time">Time</Label>
-                  <Input id="calendar-time" name="calendar-time" placeholder="e.g., 7:00 PM - 9:00 PM" required />
+                  <Input id="calendar-time" name="calendar-time" placeholder="e.g., 7:00 PM - 9:00 PM" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="calendar-location">Location</Label>
-                <Input id="calendar-location" name="calendar-location" placeholder="Enter location" required />
+                <Input id="calendar-location" name="calendar-location" placeholder="Enter location" />
               </div>
 
               <div className="space-y-2">
@@ -444,7 +483,7 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="calendar-type">Event Type</Label>
-                  <Select name="calendar-type" required>
+                  <Select name="calendar-type" defaultValue="meeting">
                     <SelectTrigger id="calendar-type">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
@@ -459,7 +498,7 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
 
                 <div className="space-y-2">
                   <Label htmlFor="calendar-color">Color Code</Label>
-                  <Select name="calendar-color" required>
+                  <Select name="calendar-color" defaultValue="green">
                     <SelectTrigger id="calendar-color">
                       <SelectValue placeholder="Select color" />
                     </SelectTrigger>
@@ -558,7 +597,7 @@ export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateE
               Cancel
             </Button>
             <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90" disabled={isSubmitting}>
-              {isSubmitting ? "Creating..." : "Create Event"}
+              {isSubmitting ? (loadingMessage || "Creating...") : "Create Event"}
             </Button>
           </div>
         </form>
