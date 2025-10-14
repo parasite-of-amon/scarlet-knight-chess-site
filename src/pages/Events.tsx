@@ -109,7 +109,7 @@ const Events = () => {
                 {upcomingEvents.map((event, index) => {
                   const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                   return (
-                    <Card key={index} className="border-2 hover:border-red-500 transition-colors">
+                    <Card key={index} className="border-2 hover:border-scarlet transition-colors">
                       <CardContent className="p-8">
                         {eventImages.length > 0 && (
                           <ImageCarousel images={eventImages} alt={event.title} />
@@ -130,9 +130,9 @@ const Events = () => {
                         {event.description && <p className="text-muted-foreground mb-6">{event.description}</p>}
                         <div className="flex gap-3">
                           <Button
-                            variant="destructive"
                             size="sm"
                             onClick={() => {}}
+                            className="bg-scarlet text-white hover:bg-scarlet-600"
                           >
                             <Trash2 className="w-4 h-4 mr-2" />
                             Delete
@@ -164,7 +164,7 @@ const Events = () => {
                 {pastEvents.map((event, index) => {
                   const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                   return (
-                    <Card key={index} className="border-2 hover:border-red-500 transition-colors">
+                    <Card key={index} className="border-2 hover:border-scarlet transition-colors">
                       <CardContent className="p-8">
                         {eventImages.length > 0 && (
                           <ImageCarousel images={eventImages} alt={event.title} />
@@ -218,9 +218,9 @@ const Events = () => {
                         )}
                         <div className="flex gap-3">
                           <Button
-                            variant="destructive"
                             size="sm"
                             onClick={() => {}}
+                            className="bg-scarlet text-white hover:bg-scarlet-600"
                           >
                             <Trash2 className="w-4 h-4 mr-2" />
                             Delete
@@ -256,7 +256,7 @@ const Events = () => {
                         const colorClass = event.color_code === 'green' ? 'bg-green-500/10 border-green-500/20' : 'bg-blue-500/10 border-blue-500/20';
                         const eventImages = event.image_paths ? JSON.parse(event.image_paths) : [];
                         return (
-                          <div key={index} className={`${colorClass} border-2 rounded-lg p-6 hover:border-red-500 transition-colors`}>
+                          <div key={index} className={`${colorClass} border-2 rounded-lg p-6 hover:border-scarlet transition-colors`}>
                             {eventImages.length > 0 && (
                               <div className="mb-4">
                                 <ImageCarousel images={eventImages} alt={event.title} />
@@ -272,9 +272,9 @@ const Events = () => {
                             <p className="text-sm mt-3 mb-4 text-muted-foreground">{event.description}</p>
                             <div className="flex gap-3">
                               <Button
-                                variant="destructive"
                                 size="sm"
                                 onClick={() => {}}
+                                className="bg-scarlet text-white hover:bg-scarlet-600"
                               >
                                 <Trash2 className="w-4 h-4 mr-2" />
                                 Delete
