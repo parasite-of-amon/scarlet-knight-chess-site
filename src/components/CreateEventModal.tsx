@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import {
   Dialog,
   DialogContent,
@@ -19,17 +19,21 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImagePlus, X } from "lucide-react";
+import { addUpcomingEvent, addPastEvent, addCalendarEvent } from "@/lib/eventsService";
+import { toast } from "sonner";
 
 interface CreateEventModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onEventCreated?: () => void;
 }
 
-export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) => {
+export const CreateEventModal = ({ open, onOpenChange, onEventCreated }: CreateEventModalProps) => {
   const [eventType, setEventType] = useState<"upcoming" | "past" | "calendar">("upcoming");
   const [isRecurring, setIsRecurring] = useState(false);
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -49,10 +53,92 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
     setImagePreviews(prev => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const resetForm = () => {
+    setEventType("upcoming");
+    setIsRecurring(false);
+    setSelectedImages([]);
+    setImagePreviews([]);
+    setIsSubmitting(false);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted - UI only for now");
-    console.log("Selected images:", selectedImages);
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+
+      const imagesJson = imagePreviews.length > 0 ? JSON.stringify(imagePreviews) : null;
+
+      if (eventType === "upcoming") {
+        addUpcomingEvent({
+          title: formData.get("upcoming-title") as string,
+          date: formData.get("upcoming-date") as string,
+          time: formData.get("upcoming-time") as string,
+          location: formData.get("upcoming-location") as string,
+          description: formData.get("upcoming-description") as string,
+          images: imagesJson || undefined,
+          is_recurring: isRecurring,
+          recurrence_pattern: isRecurring ? formData.get("upcoming-pattern") as string : undefined,
+        });
+        toast.success("Upcoming event created successfully!");
+      } else if (eventType === "past") {
+        const pastEvent = {
+          title: formData.get("past-title") as string,
+          date: formData.get("past-date") as string,
+          participants: formData.get("past-participants") as string,
+          rounds: formData.get("past-rounds") as string,
+          rating: formData.get("past-rating") as string,
+          description: formData.get("past-description") as string,
+          images: imagesJson || undefined,
+          winners: [
+            {
+              place: formData.get("winner1-place") as string,
+              name: formData.get("winner1-name") as string,
+              score: formData.get("winner1-score") as string,
+            },
+            {
+              place: formData.get("winner2-place") as string,
+              name: formData.get("winner2-name") as string,
+              score: formData.get("winner2-score") as string,
+            },
+            {
+              place: formData.get("winner3-place") as string,
+              name: formData.get("winner3-name") as string,
+              score: formData.get("winner3-score") as string,
+            },
+          ].filter(w => w.place && w.name),
+        };
+        addPastEvent(pastEvent);
+        toast.success("Past event created successfully!");
+      } else if (eventType === "calendar") {
+        addCalendarEvent({
+          title: formData.get("calendar-title") as string,
+          date: formData.get("calendar-date") as string,
+          time: formData.get("calendar-time") as string,
+          location: formData.get("calendar-location") as string,
+          description: formData.get("calendar-description") as string,
+          event_type: formData.get("calendar-type") as "meeting" | "tournament" | "social" | "deadline",
+          color_code: formData.get("calendar-color") as string,
+          images: imagesJson || undefined,
+          is_recurring: isRecurring,
+          recurrence_pattern: isRecurring ? formData.get("calendar-pattern") as string : undefined,
+        });
+        toast.success("Calendar event created successfully!");
+      }
+
+      resetForm();
+      onOpenChange(false);
+
+      if (onEventCreated) {
+        onEventCreated();
+      }
+    } catch (error) {
+      console.error("Error creating event:", error);
+      toast.error("Failed to create event. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -73,30 +159,31 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
             <TabsContent value="upcoming" className="space-y-4 mt-6">
               <div className="space-y-2">
                 <Label htmlFor="upcoming-title">Event Title</Label>
-                <Input id="upcoming-title" placeholder="Enter event title" />
+                <Input id="upcoming-title" name="upcoming-title" placeholder="Enter event title" required />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="upcoming-date">Date</Label>
-                  <Input id="upcoming-date" type="text" placeholder="e.g., March 15, 2024" />
+                  <Input id="upcoming-date" name="upcoming-date" type="text" placeholder="e.g., March 15, 2024" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="upcoming-time">Time</Label>
-                  <Input id="upcoming-time" placeholder="e.g., 7:00 PM - 9:00 PM" />
+                  <Input id="upcoming-time" name="upcoming-time" placeholder="e.g., 7:00 PM - 9:00 PM" required />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="upcoming-location">Location</Label>
-                <Input id="upcoming-location" placeholder="Enter location" />
+                <Input id="upcoming-location" name="upcoming-location" placeholder="Enter location" required />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="upcoming-description">Description</Label>
                 <Textarea
                   id="upcoming-description"
+                  name="upcoming-description"
                   placeholder="Enter event description"
                   rows={4}
                 />
@@ -163,7 +250,7 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
               {isRecurring && (
                 <div className="space-y-2">
                   <Label htmlFor="upcoming-pattern">Recurrence Pattern</Label>
-                  <Select>
+                  <Select name="upcoming-pattern">
                     <SelectTrigger id="upcoming-pattern">
                       <SelectValue placeholder="Select pattern" />
                     </SelectTrigger>
@@ -184,35 +271,36 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
             <TabsContent value="past" className="space-y-4 mt-6">
               <div className="space-y-2">
                 <Label htmlFor="past-title">Event Title</Label>
-                <Input id="past-title" placeholder="Enter event title" />
+                <Input id="past-title" name="past-title" placeholder="Enter event title" required />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="past-date">Date</Label>
-                <Input id="past-date" type="text" placeholder="e.g., November 11, 2023" />
+                <Input id="past-date" name="past-date" type="text" placeholder="e.g., November 11, 2023" required />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="past-participants">Participants</Label>
-                  <Input id="past-participants" placeholder="e.g., 18 participants" />
+                  <Input id="past-participants" name="past-participants" placeholder="e.g., 18 participants" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="past-rounds">Rounds</Label>
-                  <Input id="past-rounds" placeholder="e.g., 5 rounds" />
+                  <Input id="past-rounds" name="past-rounds" placeholder="e.g., 5 rounds" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="past-rating">Rating</Label>
-                <Input id="past-rating" placeholder="e.g., USCF Rated" />
+                <Input id="past-rating" name="past-rating" placeholder="e.g., USCF Rated" />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="past-description">Description</Label>
                 <Textarea
                   id="past-description"
+                  name="past-description"
                   placeholder="Enter event description"
                   rows={3}
                 />
@@ -224,45 +312,45 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
                   <div className="grid grid-cols-3 gap-2">
                     <div className="space-y-2">
                       <Label htmlFor="winner1-place" className="text-xs">Place</Label>
-                      <Input id="winner1-place" placeholder="1st" />
+                      <Input id="winner1-place" name="winner1-place" placeholder="1st" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="winner1-name" className="text-xs">Name</Label>
-                      <Input id="winner1-name" placeholder="Winner name" />
+                      <Input id="winner1-name" name="winner1-name" placeholder="Winner name" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="winner1-score" className="text-xs">Score</Label>
-                      <Input id="winner1-score" placeholder="5-0" />
+                      <Input id="winner1-score" name="winner1-score" placeholder="5-0" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-2">
                     <div className="space-y-2">
                       <Label htmlFor="winner2-place" className="text-xs">Place</Label>
-                      <Input id="winner2-place" placeholder="2nd" />
+                      <Input id="winner2-place" name="winner2-place" placeholder="2nd" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="winner2-name" className="text-xs">Name</Label>
-                      <Input id="winner2-name" placeholder="Winner name" />
+                      <Input id="winner2-name" name="winner2-name" placeholder="Winner name" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="winner2-score" className="text-xs">Score</Label>
-                      <Input id="winner2-score" placeholder="4-1" />
+                      <Input id="winner2-score" name="winner2-score" placeholder="4-1" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-2">
                     <div className="space-y-2">
                       <Label htmlFor="winner3-place" className="text-xs">Place</Label>
-                      <Input id="winner3-place" placeholder="3rd" />
+                      <Input id="winner3-place" name="winner3-place" placeholder="3rd" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="winner3-name" className="text-xs">Name</Label>
-                      <Input id="winner3-name" placeholder="Winner name" />
+                      <Input id="winner3-name" name="winner3-name" placeholder="Winner name" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="winner3-score" className="text-xs">Score</Label>
-                      <Input id="winner3-score" placeholder="3.5-1.5" />
+                      <Input id="winner3-score" name="winner3-score" placeholder="3.5-1.5" />
                     </div>
                   </div>
 
@@ -323,30 +411,31 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
             <TabsContent value="calendar" className="space-y-4 mt-6">
               <div className="space-y-2">
                 <Label htmlFor="calendar-title">Event Title</Label>
-                <Input id="calendar-title" placeholder="Enter event title" />
+                <Input id="calendar-title" name="calendar-title" placeholder="Enter event title" required />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="calendar-date">Date</Label>
-                  <Input id="calendar-date" type="text" placeholder="e.g., Every Tuesday" />
+                  <Input id="calendar-date" name="calendar-date" type="text" placeholder="e.g., Every Tuesday" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="calendar-time">Time</Label>
-                  <Input id="calendar-time" placeholder="e.g., 7:00 PM - 9:00 PM" />
+                  <Input id="calendar-time" name="calendar-time" placeholder="e.g., 7:00 PM - 9:00 PM" required />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="calendar-location">Location</Label>
-                <Input id="calendar-location" placeholder="Enter location" />
+                <Input id="calendar-location" name="calendar-location" placeholder="Enter location" required />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="calendar-description">Description</Label>
                 <Textarea
                   id="calendar-description"
+                  name="calendar-description"
                   placeholder="Enter event description"
                   rows={3}
                 />
@@ -355,7 +444,7 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="calendar-type">Event Type</Label>
-                  <Select>
+                  <Select name="calendar-type" required>
                     <SelectTrigger id="calendar-type">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
@@ -370,7 +459,7 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
 
                 <div className="space-y-2">
                   <Label htmlFor="calendar-color">Color Code</Label>
-                  <Select>
+                  <Select name="calendar-color" required>
                     <SelectTrigger id="calendar-color">
                       <SelectValue placeholder="Select color" />
                     </SelectTrigger>
@@ -398,7 +487,7 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
               {isRecurring && (
                 <div className="space-y-2">
                   <Label htmlFor="calendar-pattern">Recurrence Pattern</Label>
-                  <Select>
+                  <Select name="calendar-pattern">
                     <SelectTrigger id="calendar-pattern">
                       <SelectValue placeholder="Select pattern" />
                     </SelectTrigger>
@@ -465,11 +554,11 @@ export const CreateEventModal = ({ open, onOpenChange }: CreateEventModalProps) 
           </Tabs>
 
           <div className="flex justify-end gap-3 pt-4 border-t">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} disabled={isSubmitting}>
               Cancel
             </Button>
-            <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Create Event
+            <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90" disabled={isSubmitting}>
+              {isSubmitting ? "Creating..." : "Create Event"}
             </Button>
           </div>
         </form>

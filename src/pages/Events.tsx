@@ -18,24 +18,24 @@ const Events = () => {
   const [error, setError] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        await initDatabase();
-        const upcoming = getUpcomingEvents();
-        if (upcoming.length === 0) {
-          await seedDatabase();
-        }
-        setUpcomingEvents(getUpcomingEvents());
-        setPastEvents(getPastEvents());
-        setCalendarEvents(getCalendarEvents());
-        setLoading(false);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load events');
-        setLoading(false);
+  const loadData = async () => {
+    try {
+      await initDatabase();
+      const upcoming = getUpcomingEvents();
+      if (upcoming.length === 0) {
+        await seedDatabase();
       }
-    };
+      setUpcomingEvents(getUpcomingEvents());
+      setPastEvents(getPastEvents());
+      setCalendarEvents(getCalendarEvents());
+      setLoading(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load events');
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     loadData();
   }, []);
 
@@ -303,6 +303,7 @@ const Events = () => {
       <CreateEventModal
         open={isCreateModalOpen}
         onOpenChange={setIsCreateModalOpen}
+        onEventCreated={loadData}
       />
     </div>
   );

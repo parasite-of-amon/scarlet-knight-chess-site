@@ -129,14 +129,15 @@ export const getCalendarEvents = (): CalendarEvent[] => {
 export const addUpcomingEvent = (event: UpcomingEvent): void => {
   const db = getDatabase();
   db.run(
-    `INSERT INTO upcoming_events (title, date, time, location, description, is_recurring, recurrence_pattern)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO upcoming_events (title, date, time, location, description, images, is_recurring, recurrence_pattern)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       event.title,
       event.date,
       event.time,
       event.location,
       event.description || null,
+      event.images || null,
       event.is_recurring ? 1 : 0,
       event.recurrence_pattern || null
     ]
@@ -147,15 +148,16 @@ export const addUpcomingEvent = (event: UpcomingEvent): void => {
 export const addPastEvent = (event: PastEvent): void => {
   const db = getDatabase();
   db.run(
-    `INSERT INTO past_events (title, date, participants, rounds, rating, description)
-     VALUES (?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO past_events (title, date, participants, rounds, rating, description, images)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
     [
       event.title,
       event.date,
       event.participants || null,
       event.rounds || null,
       event.rating || null,
-      event.description || null
+      event.description || null,
+      event.images || null
     ]
   );
 
@@ -178,8 +180,8 @@ export const addPastEvent = (event: PastEvent): void => {
 export const addCalendarEvent = (event: CalendarEvent): void => {
   const db = getDatabase();
   db.run(
-    `INSERT INTO calendar_events (title, date, time, location, description, event_type, color_code, is_recurring, recurrence_pattern)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO calendar_events (title, date, time, location, description, event_type, color_code, images, is_recurring, recurrence_pattern)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       event.title,
       event.date,
@@ -188,6 +190,7 @@ export const addCalendarEvent = (event: CalendarEvent): void => {
       event.description || null,
       event.event_type,
       event.color_code,
+      event.images || null,
       event.is_recurring ? 1 : 0,
       event.recurrence_pattern || null
     ]
