@@ -8,6 +8,7 @@ import { getUpcomingEvents, getPastEvents, getCalendarEvents, type UpcomingEvent
 import { seedDatabase } from "@/lib/seedData";
 import { initDatabase } from "@/lib/db";
 import { CreateEventModal } from "@/components/CreateEventModal";
+import { EditEventModal } from "@/components/EditEventModal";
 import { ImageCarousel } from "@/components/ImageCarousel";
 
 const Events = () => {
@@ -17,6 +18,9 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editingEvent, setEditingEvent] = useState<UpcomingEvent | PastEvent | CalendarEvent | null>(null);
+  const [editingEventType, setEditingEventType] = useState<"upcoming" | "past" | "calendar">("upcoming");
 
   const loadData = async () => {
     try {
@@ -140,7 +144,11 @@ const Events = () => {
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => {}}
+                            onClick={() => {
+                              setEditingEvent(event);
+                              setEditingEventType("upcoming");
+                              setIsEditModalOpen(true);
+                            }}
                           >
                             <Edit className="w-4 h-4 mr-2" />
                             Edit
@@ -228,7 +236,11 @@ const Events = () => {
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => {}}
+                            onClick={() => {
+                              setEditingEvent(event);
+                              setEditingEventType("past");
+                              setIsEditModalOpen(true);
+                            }}
                           >
                             <Edit className="w-4 h-4 mr-2" />
                             Edit
@@ -282,7 +294,11 @@ const Events = () => {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => {}}
+                                onClick={() => {
+                                  setEditingEvent(event);
+                                  setEditingEventType("calendar");
+                                  setIsEditModalOpen(true);
+                                }}
                               >
                                 <Edit className="w-4 h-4 mr-2" />
                                 Edit
@@ -356,6 +372,16 @@ const Events = () => {
         onOpenChange={setIsCreateModalOpen}
         onEventCreated={loadData}
       />
+
+      {editingEvent && (
+        <EditEventModal
+          open={isEditModalOpen}
+          onOpenChange={setIsEditModalOpen}
+          onEventUpdated={loadData}
+          eventType={editingEventType}
+          event={editingEvent}
+        />
+      )}
     </div>
   );
 };

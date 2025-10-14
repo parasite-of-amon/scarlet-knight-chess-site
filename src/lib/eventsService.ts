@@ -220,25 +220,29 @@ export const updateUpcomingEvent = (id: number, event: Partial<UpcomingEvent>): 
   const fields = [];
   const values = [];
 
-  if (event.title) {
+  if (event.title !== undefined) {
     fields.push('title = ?');
     values.push(event.title);
   }
-  if (event.date) {
+  if (event.date !== undefined) {
     fields.push('date = ?');
     values.push(event.date);
   }
-  if (event.time) {
+  if (event.time !== undefined) {
     fields.push('time = ?');
-    values.push(event.time);
+    values.push(event.time || null);
   }
-  if (event.location) {
+  if (event.location !== undefined) {
     fields.push('location = ?');
-    values.push(event.location);
+    values.push(event.location || null);
   }
   if (event.description !== undefined) {
     fields.push('description = ?');
-    values.push(event.description);
+    values.push(event.description || null);
+  }
+  if (event.image_paths !== undefined) {
+    fields.push('image_paths = ?');
+    values.push(event.image_paths || null);
   }
   if (event.is_recurring !== undefined) {
     fields.push('is_recurring = ?');
@@ -246,7 +250,7 @@ export const updateUpcomingEvent = (id: number, event: Partial<UpcomingEvent>): 
   }
   if (event.recurrence_pattern !== undefined) {
     fields.push('recurrence_pattern = ?');
-    values.push(event.recurrence_pattern);
+    values.push(event.recurrence_pattern || null);
   }
 
   if (fields.length === 0) return;
@@ -256,5 +260,117 @@ export const updateUpcomingEvent = (id: number, event: Partial<UpcomingEvent>): 
 
   const db = getDatabase();
   db.run(`UPDATE upcoming_events SET ${fields.join(', ')} WHERE id = ?`, values);
+  saveDatabase();
+};
+
+export const updatePastEvent = (id: number, event: Partial<PastEvent>): void => {
+  const db = getDatabase();
+  const fields = [];
+  const values = [];
+
+  if (event.title !== undefined) {
+    fields.push('title = ?');
+    values.push(event.title);
+  }
+  if (event.date !== undefined) {
+    fields.push('date = ?');
+    values.push(event.date);
+  }
+  if (event.participants !== undefined) {
+    fields.push('participants = ?');
+    values.push(event.participants || null);
+  }
+  if (event.rounds !== undefined) {
+    fields.push('rounds = ?');
+    values.push(event.rounds || null);
+  }
+  if (event.rating !== undefined) {
+    fields.push('rating = ?');
+    values.push(event.rating || null);
+  }
+  if (event.description !== undefined) {
+    fields.push('description = ?');
+    values.push(event.description || null);
+  }
+  if (event.image_paths !== undefined) {
+    fields.push('image_paths = ?');
+    values.push(event.image_paths || null);
+  }
+
+  if (fields.length > 0) {
+    fields.push('updated_at = CURRENT_TIMESTAMP');
+    values.push(id);
+    db.run(`UPDATE past_events SET ${fields.join(', ')} WHERE id = ?`, values);
+  }
+
+  if (event.winners !== undefined) {
+    db.run('DELETE FROM past_event_winners WHERE past_event_id = ?', [id]);
+
+    if (event.winners.length > 0) {
+      for (const winner of event.winners) {
+        db.run(
+          `INSERT INTO past_event_winners (past_event_id, place, name, score)
+           VALUES (?, ?, ?, ?)`,
+          [id, winner.place, winner.name, winner.score || null]
+        );
+      }
+    }
+  }
+
+  saveDatabase();
+};
+
+export const updateCalendarEvent = (id: number, event: Partial<CalendarEvent>): void => {
+  const fields = [];
+  const values = [];
+
+  if (event.title !== undefined) {
+    fields.push('title = ?');
+    values.push(event.title);
+  }
+  if (event.date !== undefined) {
+    fields.push('date = ?');
+    values.push(event.date);
+  }
+  if (event.time !== undefined) {
+    fields.push('time = ?');
+    values.push(event.time || null);
+  }
+  if (event.location !== undefined) {
+    fields.push('location = ?');
+    values.push(event.location || null);
+  }
+  if (event.description !== undefined) {
+    fields.push('description = ?');
+    values.push(event.description || null);
+  }
+  if (event.event_type !== undefined) {
+    fields.push('event_type = ?');
+    values.push(event.event_type || 'meeting');
+  }
+  if (event.color_code !== undefined) {
+    fields.push('color_code = ?');
+    values.push(event.color_code || 'green');
+  }
+  if (event.image_paths !== undefined) {
+    fields.push('image_paths = ?');
+    values.push(event.image_paths || null);
+  }
+  if (event.is_recurring !== undefined) {
+    fields.push('is_recurring = ?');
+    values.push(event.is_recurring ? 1 : 0);
+  }
+  if (event.recurrence_pattern !== undefined) {
+    fields.push('recurrence_pattern = ?');
+    values.push(event.recurrence_pattern || null);
+  }
+
+  if (fields.length === 0) return;
+
+  fields.push('updated_at = CURRENT_TIMESTAMP');
+  values.push(id);
+
+  const db = getDatabase();
+  db.run(`UPDATE calendar_events SET ${fields.join(', ')} WHERE id = ?`, values);
   saveDatabase();
 };
