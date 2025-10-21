@@ -10,15 +10,13 @@ const Home = () => {
   return <div>
       {/* Hero Section */}
       <section className="relative bg-dark-bg text-dark-foreground py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/45 z-10" />
         <div className="absolute inset-0 bg-cover bg-center blur-[1px]" style={{
         backgroundImage: `url(${heroImage})`
       }} />
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-              Welcome to the
-              <br />
               <span className="text-primary drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">Rutgers University Chess Club!</span>
             </h1>
             <p className="text-xl text-white mb-8 leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
@@ -29,7 +27,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/membership">
                 <Button className="bg-gradient-to-r from-primary to-pink-600 text-white hover:from-pink-600 hover:to-primary text-lg px-10 py-7 text-center font-bold shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105 transition-all duration-300 border-2 border-white/20">
-                  Get Started
+                  Join Club
                 </Button>
               </Link>
               <Link to="/events">
@@ -46,11 +44,11 @@ const Home = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 -mt-32 relative z-30">
-            <Card className="bg-dark-bg text-dark-foreground border-border/10">
+            <Card className="bg-white text-foreground border-border shadow-lg">
               <CardContent className="p-8 text-center">
                 <Calendar className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-serif text-xl font-semibold mb-2">Weekly Meetings</h3>
-                <p className="text-muted-foreground text-sm mb-4">
+                <h3 className="font-serif text-xl font-semibold mb-2 text-gray-900">Weekly Meetings</h3>
+                <p className="text-gray-600 text-sm mb-4">
                   Join us every Tuesday and Friday for casual games and tournaments
                 </p>
                 <Link to="/events" className="text-primary text-sm font-medium hover:underline">
@@ -59,7 +57,7 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-primary text-primary-foreground border-primary">
+            <Card className="bg-primary text-primary-foreground border-primary shadow-lg">
               <CardContent className="p-8 text-center">
                 <Trophy className="w-12 h-12 text-primary-foreground mx-auto mb-4" />
                 <h3 className="font-serif text-xl font-semibold mb-2">Tournaments</h3>
@@ -72,11 +70,11 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-dark-bg text-dark-foreground border-border/10">
+            <Card className="bg-white text-foreground border-border shadow-lg">
               <CardContent className="p-8 text-center">
                 <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-serif text-xl font-semibold mb-2">All Welcome</h3>
-                <p className="text-muted-foreground text-sm mb-4">
+                <h3 className="font-serif text-xl font-semibold mb-2 text-gray-900">All Welcome</h3>
+                <p className="text-gray-600 text-sm mb-4">
                   Open to all Rutgers students and staff, no experience required
                 </p>
                 <Link to="/membership" className="text-primary text-sm font-medium hover:underline">
@@ -84,86 +82,6 @@ const Home = () => {
                 </Link>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="grid grid-cols-2 gap-4">
-              <img src={about1Image} alt="Chess players of different ages playing together" className="rounded-lg shadow-2xl" />
-              <img src={about2Image} alt="Strategic chess gameplay" className="rounded-lg shadow-2xl" />
-            </div>
-            <div>
-              <div className="inline-block mb-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Award className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-              <h2 className="font-serif text-4xl font-bold mb-4">
-                We Are Best Chess
-                <br />
-                Club in Town
-              </h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Serving Rutgers students for more than a century, we provide an inclusive
-                environment for skill development and campus presence. Our mission is to
-                foster a love for chess among students of all skill levels.
-              </p>
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                <div className="text-center p-4 bg-secondary rounded-lg">
-                  <div className="text-4xl font-bold text-primary mb-1">12+</div>
-                  <div className="text-sm text-muted-foreground">Years Experienced</div>
-                </div>
-                <div className="text-center p-4 bg-secondary rounded-lg">
-                  <div className="text-4xl font-bold text-primary mb-1">125+</div>
-                  <div className="text-sm text-muted-foreground">Outstanding Members</div>
-                </div>
-              </div>
-              <Link to="/about">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  About Us
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-dark-bg text-dark-foreground">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-primary" />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">125+</div>
-              <div className="text-sm text-muted-foreground">Active Members</div>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-primary" />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">100+</div>
-              <div className="text-sm text-muted-foreground">Meetings Per Year</div>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-8 h-8 text-primary" />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">15+</div>
-              <div className="text-sm text-muted-foreground">Tournaments</div>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-primary" />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">100+</div>
-              <div className="text-sm text-muted-foreground">Years of History</div>
-            </div>
           </div>
         </div>
       </section>
