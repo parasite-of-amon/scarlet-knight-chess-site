@@ -15,7 +15,7 @@ const Navigation = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  const joinClubItem = { name: "Join Club", path: "/membership" };
+  const joinClubItem = { name: "Join Us", path: "/membership" };
 
   const isActive = (path: string) => location.pathname === path;
 
