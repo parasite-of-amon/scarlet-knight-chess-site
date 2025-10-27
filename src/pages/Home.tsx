@@ -29,7 +29,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Link to="/events">
-                <Button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white hover:from-orange-600 hover:to-amber-500 text-lg px-10 py-7 text-center font-bold shadow-[0_0_30px_rgba(251,191,36,0.6)] hover:shadow-[0_0_40px_rgba(251,191,36,0.8)] hover:scale-105 transition-all duration-300 border-2 border-white/20">
+                <Button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-10 py-7 text-center font-bold shadow-[0_0_30px_rgba(255,255,255,0.6)] hover:shadow-[0_0_40px_rgba(255,255,255,0.8)] hover:scale-105 transition-all duration-300 border-2 border-white/90">
                   Our Events
                 </Button>
               </Link>

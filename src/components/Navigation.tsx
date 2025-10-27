@@ -10,11 +10,12 @@ const Navigation = () => {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Events", path: "/events" },
-    { name: "Membership", path: "/membership" },
     { name: "Resources", path: "/resources" },
     { name: "Sponsors", path: "/sponsors" },
     { name: "Contact", path: "/contact" },
   ];
+
+  const joinClubItem = { name: "Join Club", path: "/membership" };
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -45,6 +46,12 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            <Link
+              to={joinClubItem.path}
+              className="bg-primary text-primary-foreground px-6 py-2.5 rounded-lg font-semibold border-2 border-[#FFD700] hover:bg-primary/90 hover:shadow-lg transition-all duration-300"
+            >
+              {joinClubItem.name}
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,6 +80,13 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            <Link
+              to={joinClubItem.path}
+              className="block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold border-2 border-[#FFD700] hover:bg-primary/90 transition-all duration-300 text-center mt-4"
+              onClick={() => setIsOpen(false)}
+            >
+              {joinClubItem.name}
+            </Link>
           </div>
         )}
       </div>
