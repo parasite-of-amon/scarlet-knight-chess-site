@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Trophy, Users, Calendar, Globe, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { GalleryCarousel } from "@/components/GalleryCarousel";
+import { FlashCard } from "@/components/FlashCard";
 import heroImage from "@/assets/hero-bg.jpg";
 import trophyImage from "@/assets/trophy.jpg";
 import allSkillLevelsImage from "@/assets/all-skill-levels.jpg";
@@ -129,64 +130,50 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Join Section */}
+      {/* Why Join Section with Flash Cards */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <p className="text-yellow-600 font-semibold mb-3 tracking-wide">Why Choose Us</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-              Dedicated to Excellence in Chess
+              Why Join Rutgers Chess Club
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Content with Progress Bars */}
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left: Flash Cards */}
+            <div className="space-y-6">
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 The Rutgers Chess Club welcomes players of all abilities. Whether you're a complete beginner learning how pieces move or a seasoned competitor, you'll find a welcoming environment that supports and challenges you to be your best self.
               </p>
 
-              <div className="space-y-6">
-                <div>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-gray-900 font-semibold">All Skill Levels Welcome</span>
-                    <span className="text-gray-600">100%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-yellow-500 h-2.5 rounded-full" style={{ width: '100%' }}></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-gray-900 font-semibold">Competitive Tournaments</span>
-                    <span className="text-gray-600">95%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-yellow-500 h-2.5 rounded-full" style={{ width: '95%' }}></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-gray-900 font-semibold">Community & Fun</span>
-                    <span className="text-gray-600">98%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-yellow-500 h-2.5 rounded-full" style={{ width: '98%' }}></div>
-                  </div>
-                </div>
+              <div className="space-y-4">
+                <FlashCard
+                  title="All Skill Levels Welcome"
+                  content="From beginners learning how pieces move to advanced players refining complex strategies, everyone finds their place in our supportive and challenging environment."
+                  bgColor="bg-white"
+                />
+                <FlashCard
+                  title="Competitive Tournaments"
+                  content="Test your skills in USCF-rated tournaments, Blitz events, and high-stakes regional competitions. Win prizes and improve your ranking."
+                  bgColor="bg-gray-50"
+                />
+                <FlashCard
+                  title="Community & Fun"
+                  content="Join a community built on respect, friendship, and shared passion. Play fun variants like Bughouse and Atomic chess while making lasting connections."
+                  bgColor="bg-white"
+                />
               </div>
             </div>
 
-            {/* Right: Slideshow with Quote */}
-            <div>
+            {/* Right: Slideshow with Quote Overlay */}
+            <div className="relative">
               <GalleryCarousel images={slideshowImages} autoPlay={true} interval={4000} />
-              <div className="mt-6 bg-gray-900 text-white p-8 rounded-lg">
-                <p className="text-gray-300 leading-relaxed mb-4 italic">
+              <div className="absolute bottom-0 left-0 right-0 bg-gray-900/95 text-white p-6 md:p-8">
+                <p className="text-gray-300 leading-relaxed mb-3 text-sm md:text-base italic">
                   "The Rutgers Chess Club offers opportunities to test your skills in both casual and formal settings. From Blitz tournaments to high-stakes regional events, there's always a chance to compete and grow."
                 </p>
-                <p className="text-yellow-500 font-semibold">— Chess Club Member</p>
+                <p className="text-yellow-500 font-semibold text-sm md:text-base">— Chess Club Member</p>
               </div>
             </div>
           </div>
@@ -199,12 +186,12 @@ const Home = () => {
           <div className="text-center mb-16">
             <p className="text-yellow-600 font-semibold mb-3 tracking-wide">What We Offer</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-              Comprehensive Chess Experience
+              Why Join Rutgers Chess Club
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-gray-900 text-white p-8 rounded-lg text-center">
+            <div className="bg-gray-900 text-white p-8 rounded-lg text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
               <img src={allSkillLevelsImage} alt="All skill levels" className="w-full h-48 object-cover rounded-lg mb-6" />
               <h3 className="font-serif text-2xl font-bold mb-4">All Skill Levels</h3>
               <p className="text-gray-300 leading-relaxed">
@@ -212,7 +199,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg text-center border-2 border-gray-200">
+            <div className="bg-white p-8 rounded-lg text-center border-2 border-gray-200 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-yellow-500 cursor-pointer">
               <img src={learnImproveImage} alt="Learn and improve" className="w-full h-48 object-cover rounded-lg mb-6" />
               <h3 className="font-serif text-2xl font-bold mb-4">Learn & Improve</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -220,7 +207,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="bg-gray-900 text-white p-8 rounded-lg text-center">
+            <div className="bg-gray-900 text-white p-8 rounded-lg text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
               <img src={communityImage} alt="Community" className="w-full h-48 object-cover rounded-lg mb-6" />
               <h3 className="font-serif text-2xl font-bold mb-4">Community</h3>
               <p className="text-gray-300 leading-relaxed">
