@@ -1,8 +1,42 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
+import { GalleryCarousel } from "@/components/GalleryCarousel";
+import img1 from "@/assets/DSC00602_Original.jpg";
+import img2 from "@/assets/DSC00604_Original.jpg";
+import img3 from "@/assets/DSC00605_Original.jpg";
+import img4 from "@/assets/DSC00608_Original.jpg";
+import img5 from "@/assets/DSC00610_Original.jpg";
+import img6 from "@/assets/DSC00611_Original.jpg";
+import img7 from "@/assets/DSC00622_Original.jpg";
+import img8 from "@/assets/DSC00624_Original.jpg";
+import img9 from "@/assets/IMG_0387.jpg";
+import img10 from "@/assets/IMG_1927.jpg";
+import img11 from "@/assets/IMG_1930.jpg";
+import img12 from "@/assets/IMG_1931.jpg";
+import img13 from "@/assets/IMG_1933.jpg";
+import img14 from "@/assets/IMG_5055.jpg";
+import img15 from "@/assets/1500.jpg";
+import img16 from "@/assets/1500 (1).jpg";
+import img17 from "@/assets/1500 (2).jpg";
+import img18 from "@/assets/1500 (3).jpg";
+import img19 from "@/assets/20240902_151146.jpg";
+import img20 from "@/assets/20240903_201103.jpg";
+import img21 from "@/assets/20250914_1604110.jpg";
+import img22 from "@/assets/6377F711-0269-4222-BB11-69F46DF41E39.jpg";
+import img23 from "@/assets/d80570a6-d3f2-4ab7-b001-dd252fe1e540.jpg";
+import img24 from "@/assets/image0.jpg";
+import img25 from "@/assets/1q9z7qwlkqp61.png";
+import img26 from "@/assets/Screenshot_20240921-000732.png";
 
 const About = () => {
+  const galleryImages = [
+    img1, img2, img3, img4, img5, img6, img7, img8,
+    img9, img10, img11, img12, img13, img14,
+    img15, img16, img17, img18,
+    img19, img20, img21, img22, img23, img24, img25, img26
+  ];
+
   return (
     <div>
       {/* Page Header */}
@@ -64,6 +98,14 @@ const About = () => {
                 </p>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Gallery Section */}
+          <div className="mt-20">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-12 text-foreground">
+              Our Club in Action
+            </h2>
+            <GalleryCarousel images={galleryImages} autoPlay={true} interval={4000} />
           </div>
         </div>
       </section>
