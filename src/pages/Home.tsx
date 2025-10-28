@@ -4,6 +4,11 @@ import { Trophy, Users, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-bg.jpg";
 import trophyImage from "@/assets/trophy.jpg";
+import allSkillLevelsImage from "@/assets/all-skill-levels.jpg";
+import haveFunImage from "@/assets/have-fun.jpg";
+import learnImproveImage from "@/assets/learn-improve.jpg";
+import competeImage from "@/assets/compete.jpg";
+import communityImage from "@/assets/community.jpg";
 const Home = () => {
   return <div>
       {/* Hero Section */}
@@ -80,6 +85,144 @@ const Home = () => {
                 </Link>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Join Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-16 text-foreground">
+            Why Join Rutgers Chess Club?
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Left Column: Selling Points */}
+            <div className="space-y-8">
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src={allSkillLevelsImage} alt="All skill levels" className="w-16 h-16 rounded-lg object-cover" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-semibold mb-2 text-foreground">All Skill Levels</h3>
+                  <p className="text-muted-foreground">
+                    The Rutgers Chess Club welcomes players of all abilities. Whether you're a complete beginner who is still learning how the pieces move to a seasoned competitor who has learned the ins and outs of the game for years, you'll find a welcoming environment that not only supports and encourages you but also challenges you to be your best self.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src={haveFunImage} alt="Have fun" className="w-16 h-16 rounded-lg object-cover" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-semibold mb-2 text-foreground">Have Fun</h3>
+                  <p className="text-muted-foreground">
+                    While we love serious matches and strategy sessions, we also know how to mix things up with fun variants like Bughouse and Atomic chess, games that keep everyone laughing, thinking fast, and staying creative.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src={learnImproveImage} alt="Learn and improve" className="w-16 h-16 rounded-lg object-cover" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-semibold mb-2 text-foreground">Learn and Improve</h3>
+                  <p className="text-muted-foreground">
+                    Whether you're aiming to master openings, improve your endgame, or simply think more critically, our club is here to help you steadily improve your play, especially with our mentor-mentee programs.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src={competeImage} alt="Compete" className="w-16 h-16 rounded-lg object-cover" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-semibold mb-2 text-foreground">Compete</h3>
+                  <p className="text-muted-foreground">
+                    For those with a competitive spirit, the Chess Club offers opportunities to test your skills in both casual and formal settings. Members can participate in in-house tournaments, such as our Blitz-Casual Tournaments, school competitions where they can earn cash prizes, or high-stakes regional events.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src={communityImage} alt="Community" className="w-16 h-16 rounded-lg object-cover" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-semibold mb-2 text-foreground">Community</h3>
+                  <p className="text-muted-foreground">
+                    Our community is built around respect, friendship, and shared curiosity. Here, you will meet people who love chess just as much as you do and who are eager to connect through fun matches and engaging conversations.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Stats */}
+            <div className="bg-card border border-border rounded-lg p-8 shadow-lg space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Users className="w-8 h-8 text-primary" />
+                  <div>
+                    <p className="text-3xl font-bold text-foreground">120+</p>
+                    <p className="text-muted-foreground">Active Members</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Trophy className="w-8 h-8 text-primary" />
+                  <div>
+                    <p className="text-3xl font-bold text-foreground">$500+</p>
+                    <p className="text-muted-foreground">in Annual Prizes</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Calendar className="w-8 h-8 text-primary" />
+                  <div>
+                    <p className="text-3xl font-bold text-foreground">10+</p>
+                    <p className="text-muted-foreground">Tournaments per Year</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-border">
+                <h4 className="font-serif text-xl font-semibold mb-3 text-foreground">Skill Distribution</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Beginner</span>
+                    <span className="font-semibold text-foreground">30%</span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: '30%' }}></div>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Intermediate</span>
+                    <span className="font-semibold text-foreground">50%</span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: '50%' }}></div>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Advanced</span>
+                    <span className="font-semibold text-foreground">20%</span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: '20%' }}></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <p className="text-center text-sm text-muted-foreground">
+                  🏫 Open to all Rutgers students
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
