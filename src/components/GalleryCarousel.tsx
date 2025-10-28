@@ -35,11 +35,18 @@ export const GalleryCarousel = ({
   }
 
   const goToPrevious = () => {
+    setIsPlaying(false);
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
+    setIsPlaying(false);
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleDotClick = (index: number) => {
+    setIsPlaying(false);
+    setCurrentIndex(index);
   };
 
   const togglePlayPause = () => {
@@ -91,7 +98,7 @@ export const GalleryCarousel = ({
             {images.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => handleDotClick(index)}
                 className={`transition-all rounded-full ${
                   index === currentIndex
                     ? "bg-white w-8 h-3"
